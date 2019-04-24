@@ -1,0 +1,6 @@
+swaggger: 2.0
+info:
+  description: "Swagger of the smart doodle project"
+  version: "0.0.1"
+  title: "Swagger smart doodle"
+basePath: "/v2"
