@@ -1,19 +1,31 @@
-package entities;
+package org.esir.smartdoodle.entities;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by 16002492 on 24/04/19.
  */
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Poll {
 
-    @Id
-    @GeneratedValue
-    private Long id;
+	@Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    private UUID id;
 
     @Basic(optional=false)
     private String title;
@@ -39,11 +51,11 @@ public class Poll {
         this.slots = new ArrayList<Slot>();
     }
 
-    public Long getId() {
+    public UUID getId() {
         return this.id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

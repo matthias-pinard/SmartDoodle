@@ -1,12 +1,17 @@
 package org.esir.smartdoodle.rest;
 
-import org.esir.smartdoodle.domain.Gift;
-import org.esir.smartdoodle.domain.GiftService;
+import java.util.List;
 
 import javax.inject.Inject;
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.util.List;
+
+import org.esir.smartdoodle.domain.PollService;
+import org.esir.smartdoodle.entities.Poll;
 
 @Path("/gift")
 @Produces(MediaType.APPLICATION_JSON)
@@ -14,17 +19,17 @@ import java.util.List;
 public class GreetingResource {
 
     @Inject
-    GiftService giftService;
+    PollService pollService;
 
     @GET
-    public List<Gift> list() {
-        return giftService.list();
+    public List<Poll> list() {
+        return pollService.list();
     }
 
     @POST
     public void create() {
-        Gift gift = new Gift();
-        gift.setName("test");
-        giftService.set(gift);
+        Poll poll = new Poll();
+        poll.setTitle("test");
+        pollService.set(poll);
     }
 }

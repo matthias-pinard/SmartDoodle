@@ -1,4 +1,4 @@
-package entities;
+package org.esir.smartdoodle.entities;
 
 /**
  * Created by 16002492 on 24/04/19.

@@ -1,4 +1,4 @@
-package jpa;
+package org.esir.smartdoodle.jpa;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

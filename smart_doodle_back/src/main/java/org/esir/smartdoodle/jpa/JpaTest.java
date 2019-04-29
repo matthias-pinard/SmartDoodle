@@ -1,13 +1,13 @@
-package jpa;
+package org.esir.smartdoodle.jpa;
 
-import entities.Poll;
-import entities.Slot;
+import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import javax.persistence.PersistenceContext;
-import java.util.Date;
-import java.util.List;
+
+import org.esir.smartdoodle.entities.Poll;
+import org.esir.smartdoodle.entities.Slot;
 
 public class JpaTest {
 	
