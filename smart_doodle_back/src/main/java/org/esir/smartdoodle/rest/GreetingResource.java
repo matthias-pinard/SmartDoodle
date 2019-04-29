@@ -1,9 +1,8 @@
-package org.acme.quickstart.rest;
+package org.esir.smartdoodle.rest;
 
-import org.acme.quickstart.domain.Gift;
-import org.acme.quickstart.domain.GiftService;
+import org.esir.smartdoodle.domain.Gift;
+import org.esir.smartdoodle.domain.GiftService;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

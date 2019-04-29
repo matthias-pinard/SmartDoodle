@@ -1,24 +1,31 @@
-package org.acme.quickstart.domain;
+package org.esir.smartdoodle.domain;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.UUID;
 
 @Entity
 public class Gift implements Serializable {
-    private Long id;
+    private UUID id;
     private String name;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="giftSeq")
-    public Long getId() {
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    public UUID getId() {
         return id;
     }
 
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

@@ -1,4 +1,4 @@
-package org.acme.quickstart;
+package org.esir.smartdoodle;
 
 import io.quarkus.test.junit.SubstrateTest;
 

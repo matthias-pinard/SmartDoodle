@@ -1,4 +1,4 @@
-package org.acme.quickstart.domain;
+package org.esir.smartdoodle.domain;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
