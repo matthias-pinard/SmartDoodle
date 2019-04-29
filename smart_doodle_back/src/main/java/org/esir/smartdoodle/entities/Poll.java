@@ -33,7 +33,7 @@ public class Poll {
     @Basic(optional=false)
     private String summary;
 
-    @ManyToMany
+    @OneToMany(mappedBy = "poll")
     private List<Participant> participants;
 
     @OneToMany(mappedBy = "poll")

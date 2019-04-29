@@ -9,6 +9,7 @@ import java.util.UUID;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -21,16 +22,24 @@ public class Participant {
             name = "UUID",
             strategy = "org.hibernate.id.UUIDGenerator"
     )
-    
     private UUID id;
 
-    private String firstName;
+    public Poll getPoll() {
+		return poll;
+	}
+
+	public void setPoll(Poll poll) {
+		this.poll = poll;
+	}
+
+	private String firstName;
     
     private String secondName;
 
     private String mail;
     
-    
+    @ManyToOne
+    private Poll poll;
     
     public Participant(){
 
