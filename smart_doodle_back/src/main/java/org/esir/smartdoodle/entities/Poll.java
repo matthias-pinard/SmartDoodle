@@ -1,0 +1,87 @@
+package entities;
+
+/**
+ * Created by 16002492 on 24/04/19.
+ */
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+public class Poll {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @Basic(optional=false)
+    private String title;
+
+    @Basic(optional=false)
+    private String summary;
+
+    @ManyToMany
+    private List<Participant> participants;
+
+    @OneToMany(mappedBy = "poll")
+    private List<Slot> slots;
+
+    public Poll() {
+        this.participants = new ArrayList<Participant>();
+        this.slots = new ArrayList<Slot>();
+    }
+
+    public Poll(String title, String summary) {
+        this.title = title;
+        this.summary = summary;
+        this.participants = new ArrayList<Participant>();
+        this.slots = new ArrayList<Slot>();
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getSummary() {
+        return this.summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public List<Participant> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(List<Participant> participants) {
+        this.participants = participants;
+    }
+
+    public List<Slot> getSlots() {
+        return slots;
+    }
+
+    public void setSlots(List<Slot> slots) {
+        this.slots = slots;
+    }
+
+    public void addSlot(Slot slot) {
+        if(!this.slots.contains(slot)) {
+            this.slots.add(slot);
+        }
+    }
+}
