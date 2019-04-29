@@ -2,10 +2,6 @@ package org.esir.smartdoodle.entities;
 
 import java.util.UUID;
 
-/**
- * Created by 16002492 on 24/04/19.
- */
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,9 +9,8 @@ import javax.persistence.Id;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class Participant {
-
-    @Id
+public class UserAccount {
+	@Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
             name = "UUID",
@@ -30,24 +25,23 @@ public class Participant {
 
     private String mail;
     
-    
-    public Participant(){
-
+    public UserAccount() {
+    	
     }
-
-    public Participant(String firstName, String secondName, String mail) {
-        this.firstName = firstName;
+    
+    public UserAccount(String firstName, String secondName, String mail) {
+    	this.firstName = firstName;
         this.secondName = secondName;
         this.mail = mail;
     }
 
-    public UUID getId() {
-        return id;
-    }
+	public UUID getId() {
+		return id;
+	}
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
+	public void setId(UUID id) {
+		this.id = id;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -72,5 +66,5 @@ public class Participant {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
-
+    
 }
