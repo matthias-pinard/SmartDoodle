@@ -38,6 +38,12 @@ public class Poll {
 
     @OneToMany(mappedBy = "poll")
     private List<Slot> slots;
+    
+    @Basic(optional=true)
+    private String pad_link;
+    
+    @Basic(optional=true)
+    private String slack_link;
 
     public Poll() {
         this.participants = new ArrayList<Participant>();
