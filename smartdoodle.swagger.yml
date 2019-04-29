@@ -1,0 +1,95 @@
+swagger: "2.0"
+info:
+  description: "Swagger of the smart doodle project"
+  version: "0.0.1"
+  title: "Swagger smart doodle"
+basePath: "/v1"
+paths:
+  /events:
+    get:
+      parameters:
+      - name: "eventId"
+        in: "path"
+        description: "ID of Event to return"
+        required: true
+        type: "string"
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: "#/definitions/Event"
+    post:
+      tags:
+      - "event"
+      summary: "create a new event"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/Event"
+          required: true
+          description: Numeric ID of the user to get
+      responses:
+        200:
+          description: "OK"
+definitions:
+  Event:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      name:
+        type: "string"
+      description:
+        type: "string"
+      place:
+        type: "string"
+      pad_link:
+        type: "string"
+      slack_link:
+        type: "string"
+      peoples:
+        type: "array"
+        items:
+          $ref: "#/definitions/People"
+      dates:
+        type: "array"
+        items:
+          $ref: "#/definitions/Date"
+    required:
+    - "id"
+    - "name"
+  People:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      name:
+        type: "string"
+      mail:
+        type: "string"
+      dates:
+        type: "array"
+        items:
+          $ref: "#/definitions/Date"
+        description: "All the date when the person is available"
+        
+  Date:
+    type: "object"
+    properties:
+      from:
+        type: "string"
+        description: "beginning ISO date"
+      to:
+        type: "string"
+        description: "beginning ISO date"
+      peoples:
+        type: "array"
+        items: 
+          $ref: "#/definitions/People"
+        description: "All the person available at this date"
+    
