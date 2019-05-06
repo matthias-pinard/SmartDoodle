@@ -14,25 +14,23 @@
       </p>
 
       <p>
-        <label for="titre">Titre*</label>
-        <input id="titre" v-model="titre" type="text" name="titre"
-        >
+        <label for="titre" v-if="titre">Titre</label>
+        <input id="titre" v-model="titre" type="text" name="titre" placeholder="Titre">
       </p>
 
       <p>
-        <label for="lieu">Lieu</label>
-        <input id="lieu" v-model="lieu" type="text" lieu="lieu"
-        >
+        <label for="lieu" v-if="lieu">Lieu</label>
+        <input id="lieu" v-model="lieu" type="text" lieu="lieu" placeholder="Lieu (facultatif)">
       </p>
 
       <p>
-        <label for="description">Description</label>
-        <input id="description" v-model="description" type="text" description="description"
-        >
+        <label for="description" v-if="description">Description</label>
+        <input id="description" v-model="description" type="text" description="description" placeholder="Description (facultatif)">
       </p>
 
       <p>
-        <input type="submit" value="Continuer">
+        <input class="button button1" type="button" value="Continuer" v-if="!titre" disabled="disabled">
+        <input type="submit" value="Continuer" v-if="titre">
       </p>
     </form>
 
@@ -44,9 +42,12 @@ export default {
   data () {
     return {
       errors: [],
-      titre: null
+      titre: null,
+      lieu: null,
+      description: null
     }
   },
+
   methods: {
     checkForm (e) {
       if (this.titre) {
@@ -57,12 +58,9 @@ export default {
         this.errors.push('Titre requis.')
       }
       e.preventDefault()
-    },
-    test () {
-      alert("ok")
     }
   }
 }
 </script>
 
-<style src="../style/event.css"></style>
+<style src="@/style/event.css"></style>
