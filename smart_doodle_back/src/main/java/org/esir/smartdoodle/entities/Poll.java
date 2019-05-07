@@ -24,7 +24,7 @@ public class Poll extends PanacheEntity{
 
     @OneToMany(mappedBy = "poll")
     //@Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
-    public List<Participant> participants;
+    public List<Guest> participants;
 
     @OneToMany(mappedBy = "poll")
     //@Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
@@ -37,14 +37,14 @@ public class Poll extends PanacheEntity{
     public String slack_link;
     //Constructors
     public Poll() {
-        this.participants = new ArrayList<Participant>();
+        this.participants = new ArrayList<Guest>();
         this.slots = new ArrayList<Slot>();
     }
 
     public Poll(String title, String summary) {
         this.title = title;
         this.summary = summary;
-        this.participants = new ArrayList<Participant>();
+        this.participants = new ArrayList<Guest>();
         this.slots = new ArrayList<Slot>();
     }
 

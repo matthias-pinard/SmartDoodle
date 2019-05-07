@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 @Entity
-public class Participant extends PanacheEntity{
+public class Guest extends PanacheEntity{
 	@Basic(optional=false)
 	public String firstName;
 	@Basic(optional=false)
@@ -23,7 +23,7 @@ public class Participant extends PanacheEntity{
     @ManyToOne
     public Poll poll;
 
-    public Participant(String firstName, String secondName, String mail) {
+    public Guest(String firstName, String secondName, String mail) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.mail = mail;
