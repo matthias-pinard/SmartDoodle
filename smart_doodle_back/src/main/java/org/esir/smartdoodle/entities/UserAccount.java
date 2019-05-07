@@ -1,5 +1,6 @@
 package org.esir.smartdoodle.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
@@ -10,7 +11,7 @@ public class UserAccount extends PanacheEntity {
     public String firstName;
     
     public String secondName;
-
+    @Column(unique=true)
     public String mail;
     
     public UserAccount() {
