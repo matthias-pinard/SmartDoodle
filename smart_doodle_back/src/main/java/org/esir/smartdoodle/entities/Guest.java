@@ -1,5 +1,6 @@
 package org.esir.smartdoodle.entities;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 
 /**
@@ -21,8 +22,10 @@ public class Guest extends PanacheEntity{
     public String mail;
     
     @ManyToOne
+    @JsonbTransient
     public Poll poll;
 
+    public Guest() {}
     public Guest(String firstName, String secondName, String mail) {
         this.firstName = firstName;
         this.secondName = secondName;
