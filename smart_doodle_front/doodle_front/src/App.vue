@@ -1,15 +1,21 @@
+
 <template>
   <div id="app">
-    <event></event>
+    <date></date>
   </div>
 </template>
 
 <script>
 import Event from './components/Event'
-export default {
-  name: 'App',
-  components: {Event}
+import Date from './components/Date'
+export default { 
+  components: {
+    Event,
+    Date
+  }
 }
 </script>
+
+
 
 
