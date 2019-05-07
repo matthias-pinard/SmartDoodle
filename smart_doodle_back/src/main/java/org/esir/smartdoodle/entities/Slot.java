@@ -1,23 +1,25 @@
 package org.esir.smartdoodle.entities;
 
-import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-public class Slot {
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
-    @Id
-    @GeneratedValue
-    private Long id;
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
+
+@Entity
+public class Slot extends PanacheEntity{
+
 
     @Basic(optional=false)
-    private Date dateBegin;
+    public Date dateBegin;
 
     @Basic(optional=true)
-    private Date dateEnd;
+    public Date dateEnd;
 
     @ManyToOne
-    private Poll poll;
+    public Poll poll;
 
     public Slot(){
 
@@ -30,29 +32,5 @@ public class Slot {
     public Slot(Date dateBegin, Date dateEnd){
         this.dateBegin = dateBegin;
         this.dateEnd = dateEnd;
-    }
-
-    public Date getDateBegin(){
-        return this.dateBegin;
-    }
-
-    public void setDateBegin(Date dateBegin) {
-        this.dateBegin = dateBegin;
-    }
-
-    public Date getDateEnd(){
-        return this.dateEnd;
-    }
-
-    public void setDateEnd(Date dateEnd) {
-        this.dateEnd = dateEnd;
-    }
-
-    public Poll getPoll() {
-        return poll;
-    }
-
-    public void setPoll(Poll poll) {
-        this.poll = poll;
     }
 }
