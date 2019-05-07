@@ -18,6 +18,8 @@ paths:
           description: OK
           schema:
             $ref: "#/definitions/Event"
+        '400':
+          description: Error
     post:
       tags:
       - "event"
@@ -32,10 +34,59 @@ paths:
           schema:
             $ref: "#/definitions/Event"
           required: true
+          description: Numeric ID of the user to patch
+      responses:
+        200:
+          description: "OK"
+        400:
+          description: "Error"
+    patch:
+      tags:
+      - "event"
+      summary: "Update a event"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/Event"
+          required: true
           description: Numeric ID of the user to get
       responses:
         200:
           description: "OK"
+        400:
+          description: "Error"
+  /envents/disponibility/:
+    patch:
+      parameters:
+      - name: "dateId"
+        in: "body"
+        description: "Id of the date"
+        required: true
+        type: "string"
+      - name: "userId"
+        in: "body"
+        required: true
+        type: string
+        description: "Id of the user"
+      - name: "available"
+        in: "body"
+        required: true
+        type: boolean
+        description: "If the user is available"
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: "#/definitions/Event"
+        '400':
+          description: Error
+
+
 definitions:
   Event:
     type: "object"
