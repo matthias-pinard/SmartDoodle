@@ -27,7 +27,7 @@ public class Poll extends PanacheEntity{
     @Basic()
     @OneToMany(mappedBy = "poll")
     @Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
-    public List<Guest> participants = new ArrayList<>();
+    public List<Guest> guests = new ArrayList<>();
 
     @OneToMany(mappedBy = "poll")
     //@Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
@@ -51,11 +51,12 @@ public class Poll extends PanacheEntity{
     public void addSlot(Slot slot) {
         if(!this.slots.contains(slot)) {
             this.slots.add(slot);
+            slot.poll = this;
         }
     }
 
     public void addGuest(Guest guest) {
-        participants.add(guest);
+        this.guests.add(guest);
         guest.poll = this;
     }
     //Queries

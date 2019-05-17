@@ -5,6 +5,7 @@ import org.esir.smartdoodle.entities.Guest;
 import org.esir.smartdoodle.entities.Poll;
 import org.esir.smartdoodle.entities.Slot;
 import org.esir.smartdoodle.entities.UserAccount;
+import org.jboss.logging.annotations.Pos;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
@@ -14,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-@Path("/poll")
+@Path("/polls")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @ApplicationScoped
@@ -30,21 +31,30 @@ public class Rest {
     public List<Guest> listg() {
         return Guest.listAll();
     }
+
     @POST
     @Transactional
-    public void create() {
-        Poll poll = new Poll("Test", "test poll");
-        Guest guest = new Guest("m", "m", "gmail");
-        poll.addGuest(guest);
-        guest.persist();
+    public void createPoll(Poll poll) {
         poll.persist();
     }
 
-    @PATCH
-    @Path("{id}")
+    @POST
     @Transactional
-    public void addGuest(@PathParam("id") Long id) {
+    @Path("slots/{id}")
+    public void addSlot(@PathParam("id") Long id, Slot slot) {
         Poll poll = Poll.findById(id);
+        poll.addSlot(slot);
+        slot.persist();
+        poll.persist();
+    }
+
+    @POST
+    @Transactional
+    @Path("guests/{id}")
+    public void addGuest(@PathParam("id") Long id, Guest guest) {
+        Poll poll = Poll.findById(id);
+        poll.addGuest(guest);
+        guest.persist();
         poll.persist();
     }
 }

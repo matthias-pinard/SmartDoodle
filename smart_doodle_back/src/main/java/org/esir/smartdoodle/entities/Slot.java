@@ -2,6 +2,7 @@ package org.esir.smartdoodle.entities;
 
 import java.util.Date;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -19,6 +20,7 @@ public class Slot extends PanacheEntity{
     public Date dateEnd;
 
     @ManyToOne
+    @JsonbTransient
     public Poll poll;
 
     public Slot(){
