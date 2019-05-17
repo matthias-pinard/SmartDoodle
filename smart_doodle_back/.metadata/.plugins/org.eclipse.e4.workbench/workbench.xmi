@@ -1962,7 +1962,7 @@
   <commands xmi:id="_bybO6XDVEemwdZ7M-N_iPA" elementId="org.eclipse.egit.ui.team.CompareWithIndex" commandName="Compare with Index" category="_bx97unDVEemwdZ7M-N_iPA"/>
   <commands xmi:id="_bybO6nDVEemwdZ7M-N_iPA" elementId="org.eclipse.m2e.discovery.ui" commandName="m2e Marketplace" category="_bx97wXDVEemwdZ7M-N_iPA"/>
   <commands xmi:id="_bybO63DVEemwdZ7M-N_iPA" elementId="org.eclipse.ui.edit.text.zoomOut" commandName="Zoom Out" description="Zoom out text, decrease default font size for text editors" category="_bx9UqXDVEemwdZ7M-N_iPA"/>
-  <commands xmi:id="_bybO7HDVEemwdZ7M-N_iPA" elementId="org.eclipse.jdt.ui.edit.text.java.introduce.parameter.object" commandName="Introduce Parameter Object" description="Introduce a parameter object to a selected method" category="_bx97s3DVEemwdZ7M-N_iPA"/>
+  <commands xmi:id="_bybO7HDVEemwdZ7M-N_iPA" elementId="org.eclipse.jdt.ui.edit.text.java.introduce.parameter.object" commandName="Introduce Parameter org.esir.smartdoodle.jsonobject" description="Introduce a parameter object to a selected method" category="_bx97s3DVEemwdZ7M-N_iPA"/>
   <commands xmi:id="_bybO7XDVEemwdZ7M-N_iPA" elementId="org.eclipse.mylyn.tasks.ui.command.markTaskIncomplete" commandName="Mark Task Incomplete" category="_bx9Uq3DVEemwdZ7M-N_iPA"/>
   <commands xmi:id="_bybO7nDVEemwdZ7M-N_iPA" elementId="org.eclipse.ui.file.save" commandName="Save" description="Save the current contents" category="_bx97sHDVEemwdZ7M-N_iPA"/>
   <commands xmi:id="_bybO73DVEemwdZ7M-N_iPA" elementId="org.eclipse.gef.zoom_out" commandName="Zoom Out" description="Zoom Out" category="_bx97vXDVEemwdZ7M-N_iPA"/>

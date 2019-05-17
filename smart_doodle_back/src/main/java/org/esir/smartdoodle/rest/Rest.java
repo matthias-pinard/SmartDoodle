@@ -5,6 +5,7 @@ import org.esir.smartdoodle.entities.Guest;
 import org.esir.smartdoodle.entities.Poll;
 import org.esir.smartdoodle.entities.Slot;
 import org.esir.smartdoodle.entities.UserAccount;
+import org.esir.smartdoodle.jsonobject.Disponibility;
 import org.jboss.logging.annotations.Pos;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -56,5 +57,18 @@ public class Rest {
         poll.addGuest(guest);
         guest.persist();
         poll.persist();
+    }
+
+    @PATCH
+    @Transactional
+    @Path("disponibility")
+    public void changeDisponibility(Disponibility disponibility) {
+        Guest guest = Guest.findById(disponibility.guestId);
+        Slot slot = Slot.findById(disponibility.slotId);
+        if(disponibility.availble) {
+            guest.addSlot(slot);
+        } else {
+            guest.removeSlot(slot);
+        }
     }
 }

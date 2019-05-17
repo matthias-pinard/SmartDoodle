@@ -9,8 +9,12 @@ import javax.persistence.Basic;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Guest extends PanacheEntity{
@@ -25,6 +29,10 @@ public class Guest extends PanacheEntity{
     @JsonbTransient
     public Poll poll;
 
+    @OneToMany(mappedBy = "poll")
+    //@Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
+    public List<Slot> slots = new ArrayList<>();
+
     public Guest() {}
     public Guest(String firstName, String secondName, String mail) {
         this.firstName = firstName;
@@ -32,4 +40,13 @@ public class Guest extends PanacheEntity{
         this.mail = mail;
     }
 
+    public void addSlot(Slot slot) {
+        slots.add(slot);
+    }
+
+    public void removeSlot(Slot slot) {
+        if (slots.contains(slot)) {
+            slots.remove(slot);
+        }
+    }
 }
