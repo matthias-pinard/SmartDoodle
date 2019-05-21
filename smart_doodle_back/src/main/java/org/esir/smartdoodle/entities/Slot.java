@@ -23,6 +23,10 @@ public class Slot extends PanacheEntity{
     @JsonbTransient
     public Poll poll;
 
+    @ManyToOne
+    @JsonbTransient
+    public Guest guest;
+
     public Slot(){
 
     }

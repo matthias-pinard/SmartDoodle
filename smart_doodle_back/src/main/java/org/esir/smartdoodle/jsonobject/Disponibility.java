@@ -3,12 +3,12 @@ package org.esir.smartdoodle.jsonobject;
 public class Disponibility {
     public Long guestId;
     public Long slotId;
-    public boolean availble;
+    public Boolean available;
 
     public  Disponibility(){}
-    public Disponibility(Long guest, Long slot, boolean available) {
+    public Disponibility(Long guest, Long slot, Boolean available) {
         this.guestId = guest;
         this.slotId = slot;
-        this.availble = available;
+        this.available = available;
     }
 }

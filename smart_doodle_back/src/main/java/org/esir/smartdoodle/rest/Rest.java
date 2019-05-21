@@ -66,13 +66,14 @@ public class Rest {
     public void changeDisponibility(Disponibility disponibility) {
         Guest guest = Guest.findById(disponibility.guestId);
         Slot slot = Slot.findById(disponibility.slotId);
-        if(disponibility.availble) {
+        System.out.println(disponibility.available);
+        if(disponibility.available) {
             guest.addSlot(slot);
         } else {
             guest.removeSlot(slot);
         }
         slot.persist();
         guest.persist();
-        System.out.println("" + guest);
+        System.out.println("" + guest.slots);
     }
 }

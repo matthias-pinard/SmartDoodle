@@ -31,8 +31,8 @@ public class Guest extends PanacheEntity{
     @JsonbTransient
     public Poll poll;
 
-    @OneToMany(mappedBy = "poll")
     @Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
+    @OneToMany(mappedBy = "guest")
     public List<Slot> slots = new ArrayList<>();
 
     public Guest() {}
@@ -44,11 +44,13 @@ public class Guest extends PanacheEntity{
 
     public void addSlot(Slot slot) {
         slots.add(slot);
+        slot.guest = this;
     }
 
     public void removeSlot(Slot slot) {
         if (slots.contains(slot)) {
             slots.remove(slot);
+            slot.guest = null;
         }
     }
 }
