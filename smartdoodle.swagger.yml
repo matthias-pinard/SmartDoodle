@@ -118,9 +118,9 @@ definitions:
     properties:
       id:
         type: "string"
-      name:
+      title:
         type: "string"
-      description:
+      summary:
         type: "string"
       place:
         type: "string"
@@ -128,10 +128,10 @@ definitions:
         type: "string"
       slack_link:
         type: "string"
-      peoples:
+      guests:
         type: "array"
         items:
-          $ref: "#/definitions/People"
+          $ref: "#/definitions/Guest"
       dates:
         type: "array"
         items:
@@ -139,7 +139,7 @@ definitions:
     required:
     - "id"
     - "name"
-  People:
+  Guest:
     type: "object"
     properties:
       id:
@@ -148,13 +148,13 @@ definitions:
         type: "string"
       mail:
         type: "string"
-      dates:
+      slots:
         type: "array"
         items:
-          $ref: "#/definitions/Date"
+          $ref: "#/definitions/Slot"
         description: "All the date when the person is available"
         
-  Date:
+  Slot:
     type: "object"
     properties:
       from:
@@ -166,6 +166,6 @@ definitions:
       peoples:
         type: "array"
         items: 
-          $ref: "#/definitions/People"
+          $ref: "#/definitions/Guest"
         description: "All the person available at this date"
     
