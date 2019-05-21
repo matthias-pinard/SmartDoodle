@@ -30,7 +30,7 @@ public class Poll extends PanacheEntity{
     public List<Guest> guests = new ArrayList<>();
 
     @OneToMany(mappedBy = "poll")
-    //@Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
+    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
     public List<Slot> slots = new ArrayList<>();
     
     @Basic(optional=true)

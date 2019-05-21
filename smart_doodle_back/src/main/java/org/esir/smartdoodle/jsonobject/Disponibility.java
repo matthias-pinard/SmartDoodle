@@ -5,6 +5,7 @@ public class Disponibility {
     public Long slotId;
     public boolean availble;
 
+    public  Disponibility(){}
     public Disponibility(Long guest, Long slot, boolean available) {
         this.guestId = guest;
         this.slotId = slot;

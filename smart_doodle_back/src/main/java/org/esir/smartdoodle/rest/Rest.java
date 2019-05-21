@@ -43,6 +43,7 @@ public class Rest {
     @Transactional
     @Path("slots/{id}")
     public void addSlot(@PathParam("id") Long id, Slot slot) {
+        System.out.println("in");
         Poll poll = Poll.findById(id);
         poll.addSlot(slot);
         slot.persist();
@@ -70,5 +71,8 @@ public class Rest {
         } else {
             guest.removeSlot(slot);
         }
+        slot.persist();
+        guest.persist();
+        System.out.println("" + guest);
     }
 }

@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +32,7 @@ public class Guest extends PanacheEntity{
     public Poll poll;
 
     @OneToMany(mappedBy = "poll")
-    //@Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
+    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
     public List<Slot> slots = new ArrayList<>();
 
     public Guest() {}
