@@ -43,12 +43,14 @@ public class Rest {
     @POST
     @Transactional
     @Path("slots/{id}")
-    public void addSlot(@PathParam("id") Long id, Slot slot) {
+    public void addSlots(@PathParam("id") Long id, List<Slot> slots) {
         System.out.println("in");
         Poll poll = Poll.findById(id);
-        poll.addSlot(slot);
-        slot.persist();
-        poll.persist();
+        for(Slot slot: slots) {
+            poll.addSlot(slot);
+            slot.persist();
+            poll.persist();
+        }
     }
 
     @POST
