@@ -35,8 +35,9 @@ public class Rest {
 
     @POST
     @Transactional
-    public void createPoll(Poll poll) {
+    public Poll createPoll(Poll poll) {
         poll.persist();
+        return poll;
     }
 
     @POST
@@ -76,4 +77,12 @@ public class Rest {
         guest.persist();
         System.out.println("" + guest.slots);
     }
+
+//
+//    @DELETE
+//    @Path("/{id}")
+//    public void delete(@PathParam("id") Long id) {
+//        Poll.d
+//    }
+
 }
