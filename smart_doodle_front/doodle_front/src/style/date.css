@@ -1,4 +1,4 @@
-h1, h2, #main, #button, #cible {
+h1, h2, #main {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     text-align: center;
 }
@@ -9,6 +9,6 @@ h1 {
     color: darkcyan;
 }
 
-#cible {
-
-}
+h2 {
+    font-size: 30px;
+  }
