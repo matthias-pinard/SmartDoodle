@@ -36,12 +36,14 @@ public class Rest {
         return Poll.findById(id);
     }
 
-    @GET
-    @Path("g")
-    public List<Guest> listg() {
-        return Guest.listAll();
+    
+	@GET
+    @Path("{id}/s")
+    public List<Slot> lists(@PathParam("id") Long id) {
+		Poll poll = Poll.findById(id);
+        return poll.slots;
     }
-
+    
     @POST
     @Transactional
     public Poll createPoll(Poll poll) {
@@ -54,7 +56,7 @@ public class Rest {
 
     @POST
     @Transactional
-    @Path("slots/{id}")
+    @Path("{id}/slots")
     public void addSlots(@PathParam("id") Long id, List<Slot> slots) {
         System.out.println("in");
         Poll poll = Poll.findById(id);
@@ -67,7 +69,7 @@ public class Rest {
 
     @POST
     @Transactional
-    @Path("guests/{id}")
+    @Path("{id}/guests")
     public void addGuest(@PathParam("id") Long id, Guest guest) {
         Poll poll = Poll.findById(id);
         poll.addGuest(guest);
@@ -80,7 +82,18 @@ public class Rest {
 
     @PATCH
     @Transactional
-    @Path("disponibility")
+    @Path("{id}")
+    public void updatePoll(@PathParam("id") Long id, Poll newPoll) {
+    	Poll prevPoll = Poll.findById(id);
+    	prevPoll.title = newPoll.title;
+    	prevPoll.summary = newPoll.summary;
+    	prevPoll.place = newPoll.place;
+    	prevPoll.persist();
+    }
+    
+    @PATCH
+    @Transactional
+    @Path("{id}/disponibility/{disponibilityID}")
     public void changeDisponibility(Disponibility disponibility) {
         Guest guest = Guest.findById(disponibility.guestId);
         Slot slot = Slot.findById(disponibility.slotId);
