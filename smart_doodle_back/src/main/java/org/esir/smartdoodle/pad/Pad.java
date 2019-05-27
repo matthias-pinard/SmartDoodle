@@ -25,6 +25,11 @@ public class Pad {
         client.createPad(padId);
     }
 
+    public static String getIdFromLink(String link) {
+        int index = link.indexOf("/p/");
+        String id = link.substring(index + 3);
+        return id;
+    }
     public String getId() {
         return padId;
     }
@@ -34,9 +39,10 @@ public class Pad {
     }
 
     public static void main(String[] args) {
-        Pad pad = new Pad("http://148.60.11.233:3000", "473205ce80eba9fefc02de7401d64d71d4fda6db8fd1e066d71da3f4cc2ce723");
+        Pad pad = new Pad("http://148.60.11.233:3500", "473205ce80eba9fefc02de7401d64d71d4fda6db8fd1e066d71da3f4cc2ce723");
         pad.addUser("Anne");
         System.out.println(pad.getLink());
+        System.out.println("id: " + Pad.getIdFromLink(pad.getLink()));
     }
 
     public void addUser(String user) {
@@ -61,7 +67,12 @@ public class Pad {
         if(!exist) {
             client.createPad(padId);
         }
+    }
 
+    public void setHeader(String title) {
+        String str = client.getText(padId).get("text").toString();
+        str = title + "\n\n" + str;
+        client.setText(padId, str);
     }
 
 }
