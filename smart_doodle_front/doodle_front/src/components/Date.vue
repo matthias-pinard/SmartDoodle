@@ -6,9 +6,10 @@
     </header>
     <div id="main">
       <form @submit="submitForm">
-        <div v-for="i in nbDate" :key="i"> Le
+        <div v-for="i in nbDate" :key="i">
+          Le
           <input type="date" v-model="jour[i-1]" required> à
-          <input type="time" v-model="heureDebut[i-1]" required> 
+          <input type="time" v-model="heureDebut[i-1]" required>
         </div>
         <br>
         <input type="button" value="Ajouter date" @click="addField">
@@ -21,15 +22,15 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 
 export default {
-  data () {
+  data() {
     return {
       jour: [],
       heureDebut: [],
       nbDate: 1
-    }
+    };
   },
 
   props: {
@@ -38,22 +39,27 @@ export default {
 
   methods: {
     addField() {
-        this.nbDate++
+      this.nbDate++;
     },
     submitForm(e) {
-      e.preventDefault()
-      let listDate = []
+      e.preventDefault();
+      let listDate = [];
       for (let i = 0; i < this.nbDate; i++) {
-        let tmp = new Date(`${this.jour[i]}T${this.heureDebut[i]}`).toJSON()
-        let date = {dateBegin: tmp}
-        listDate.push(date)       
+        let tmp = new Date(`${this.jour[i]}T${this.heureDebut[i]}`).toJSON();
+        let date = { dateBegin: tmp };
+        listDate.push(date);
       }
-      axios.post(`http://148.60.11.233/polls/slots/1`, listDate)
-      .then(response => {
-      
-      }).catch(err => {
-        console.log(err)
-      })
+      axios
+        .post(
+          'http://148.60.11.233/polls/' + this.$route.params.id + '/slots' ,
+          listDate
+        )
+        .then(response => {
+          this.$router.push({
+            name: "creator",
+            params: { id: this.$route.params.id }
+          });
+        });
     }
   }
 };
