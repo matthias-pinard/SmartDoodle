@@ -2,26 +2,27 @@ swagger: "2.0"
 info:
   description: "Swagger of the smart doodle project"
   version: "0.0.1"
-  title: "Swagger smart doodle"
+  title: "Swagger SmartDoodle API"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
 basePath: "/v1"
+tags:
+- name: "Poll"
+  description: "Everything to manage polls"
+  externalDocs:
+    description: "Find out more"
+    url: github.com/Nassafy/SmartDoodle
+
 paths:
-  /events:
-    get:
-      parameters:
-      - name: "eventId"
-        in: "path"
-        description: "ID of Event to return"
-        required: true
-        type: "string"
-      responses:
-        '200':
-          description: OK
-          schema:
-            $ref: "#/definitions/Event"
+  /polls:
     post:
       tags:
-      - "event"
-      summary: "create a new event"
+      - "Poll"
+      summary: "Create a new poll"
       consumes:
       - "application/json"
       produces:
@@ -30,21 +31,96 @@ paths:
         - in: "body"
           name: "body"
           schema:
-            $ref: "#/definitions/Event"
+            $ref: "#/definitions/Poll"
+          required: true
+          description: Numeric ID of the user to patch
+      responses:
+        200:
+          description: "OK"
+        400:
+          description: "Error"
+
+
+
+  /polls/{pollID}:
+    get:
+      summary: "Find a poll by ID"
+      tags:
+      - "Poll"
+      parameters:
+      - name: "PollId"
+        in: "path"
+        description: "ID of Poll to return"
+        required: true
+        type: "string"
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: "#/definitions/Poll"
+        '400':
+          description: Error
+    patch:
+      tags:
+      - "Poll"
+      summary: "Update a poll"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            $ref: "#/definitions/Poll"
           required: true
           description: Numeric ID of the user to get
       responses:
         200:
           description: "OK"
+        400:
+          description: "Error"
+
+
+
+  /polls/{pollID}/disponibility/{disponibilityID}:
+    patch:
+      tags:
+      - "Poll"
+      parameters:
+      - name: "dateId"
+        in: "body"
+        description: "Id of the date"
+        required: true
+        type: "string"
+      - name: "userId"
+        in: "body"
+        required: true
+        type: string
+        description: "Id of the user"
+      - name: "available"
+        in: "body"
+        required: true
+        type: boolean
+        description: "If the user is available"
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: "#/definitions/Poll"
+        '400':
+          description: Error
+
+
 definitions:
-  Event:
+  Poll:
     type: "object"
     properties:
       id:
         type: "string"
-      name:
+      title:
         type: "string"
-      description:
+      summary:
         type: "string"
       place:
         type: "string"
@@ -52,10 +128,10 @@ definitions:
         type: "string"
       slack_link:
         type: "string"
-      peoples:
+      guests:
         type: "array"
         items:
-          $ref: "#/definitions/People"
+          $ref: "#/definitions/Guest"
       dates:
         type: "array"
         items:
@@ -63,7 +139,7 @@ definitions:
     required:
     - "id"
     - "name"
-  People:
+  Guest:
     type: "object"
     properties:
       id:
@@ -72,13 +148,13 @@ definitions:
         type: "string"
       mail:
         type: "string"
-      dates:
+      slots:
         type: "array"
         items:
-          $ref: "#/definitions/Date"
+          $ref: "#/definitions/Slot"
         description: "All the date when the person is available"
         
-  Date:
+  Slot:
     type: "object"
     properties:
       from:
@@ -90,6 +166,6 @@ definitions:
       peoples:
         type: "array"
         items: 
-          $ref: "#/definitions/People"
+          $ref: "#/definitions/Guest"
         description: "All the person available at this date"
     
