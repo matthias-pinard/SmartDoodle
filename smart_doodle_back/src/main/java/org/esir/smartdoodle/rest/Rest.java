@@ -97,11 +97,13 @@ public class Rest {
         System.out.println("" + guest.slots);
     }
 
-//
-//    @DELETE
-//    @Path("/{id}")
-//    public void delete(@PathParam("id") Long id) {
-//        Poll.d
-//    }
+   @DELETE
+   @Path("/{id}")
+   public void delete(@PathParam("id") UUID id){
+	   Poll poll = Poll.findById(id);
+	   if(poll.isPersistent()) {
+		   poll.delete();
+	   }
+   }
 
 }
