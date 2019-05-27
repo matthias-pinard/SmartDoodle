@@ -69,10 +69,10 @@ public class Pad {
         }
     }
 
-    public String setHeader(String title) {
+    public void setHeader(String title) {
         String str = client.getText(padId).get("text").toString();
         str = title + "\n\n" + str;
-        return str;
+        client.setText(padId, str);
     }
 
 }
