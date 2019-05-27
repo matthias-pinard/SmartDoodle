@@ -14,14 +14,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.GenericGenerator;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
+
 
 @Entity
-public class Poll extends PanacheEntityBase {
+public class Poll extends PanacheEntity{
+	private static final String CHAT_PLATFORM_LINK = "https://tlk.io/";
 
 	@Id
 	@GeneratedValue(generator = "UUID")
@@ -54,9 +56,8 @@ public class Poll extends PanacheEntityBase {
     public String pad_link;
 
     @Basic(optional=true)
-    public String slack_link;
-    
-    //	CONSTRUCTORS
+    public String chat_link = CHAT_PLATFORM_LINK+UUID.randomUUID().toString().substring(0, 30);
+    //Constructors
     public Poll() {
     }
 
@@ -78,4 +79,5 @@ public class Poll extends PanacheEntityBase {
         guest.poll = this;
     }
     //Queries
+    
 }
