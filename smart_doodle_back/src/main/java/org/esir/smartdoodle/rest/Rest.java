@@ -24,7 +24,7 @@ import java.util.List;
 public class Rest {
 
     private final String PAD_API_KEY = "473205ce80eba9fefc02de7401d64d71d4fda6db8fd1e066d71da3f4cc2ce723";
-    private final String PAD_URL = "http://148.60.11.233:3000";
+    private final String PAD_URL = "http://148.60.11.233:3500";
     @GET
     public List<Poll> list() {
         return Poll.listAll();
