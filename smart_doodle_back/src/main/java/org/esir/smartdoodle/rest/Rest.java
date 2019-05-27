@@ -3,18 +3,15 @@ package org.esir.smartdoodle.rest;
 import org.esir.smartdoodle.entities.Guest;
 import org.esir.smartdoodle.entities.Poll;
 import org.esir.smartdoodle.entities.Slot;
-import org.esir.smartdoodle.entities.UserAccount;
 import org.esir.smartdoodle.jsonobject.Disponibility;
 import org.esir.smartdoodle.pad.Pad;
-import org.jboss.logging.annotations.Pos;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
 @Path("/polls")
 @Produces(MediaType.APPLICATION_JSON)
