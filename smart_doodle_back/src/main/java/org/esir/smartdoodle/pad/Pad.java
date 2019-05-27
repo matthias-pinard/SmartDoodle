@@ -50,7 +50,7 @@ public class Pad {
         final String substring = "Liste des participants:\n";
         int index = str.indexOf(substring);
         if (index == -1) {
-            str = substring;
+            str += "\n" + substring;
             index = 0;
         }
         index += substring.length();

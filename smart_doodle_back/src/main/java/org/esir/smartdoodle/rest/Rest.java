@@ -95,6 +95,7 @@ public class Rest {
     }
 
    @DELETE
+   @Transactional
    @Path("/{id}")
    public void delete(@PathParam("id") UUID id){
 	   Poll poll = Poll.findById(id);
