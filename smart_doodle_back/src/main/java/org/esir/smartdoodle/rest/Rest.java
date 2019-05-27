@@ -68,7 +68,7 @@ public class Rest {
         guest.persist();
         poll.persist();
 
-        Pad pad = new Pad(Pad.getIdFromLink(poll.pad_link), PAD_API_KEY);
+        Pad pad = new Pad(PAD_URL, PAD_API_KEY, Pad.getIdFromLink(poll.pad_link));
         pad.addUser(guest.name);
     }
 
