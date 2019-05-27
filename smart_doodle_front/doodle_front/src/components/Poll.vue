@@ -4,7 +4,7 @@
     <h2>Evénement créé par {{ this.event.guests[0].name }}</h2>
     <h3>{{ this.event.summary }}</h3>
     <p>
-      Partagez le lien de la page pour inviter de nouveaux participants.
+      Partagez le lien de la page pour inviter de nouveaux participants
       </br>
       </br>
       <a :href="this.event.pad_link" target="_blank">Accéder au pad</a>
