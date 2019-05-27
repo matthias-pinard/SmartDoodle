@@ -1,27 +1,22 @@
+
 <template>
-  <div class="event">
+  <div>
     <header class="header">
       <h1>Doodle++</h1>
-      <h2>Description de votre événement </h2>
+      <h2>Les Membres</h2>
     </header>
-
-    <form @submit="submitForm">
-
-      <p>
-        <label for="description" v-if="description">Description</label>
-        <input id="description" v-model="description" type="text" name="description" placeholder=" saissir la discription" required>
-      </p>
-
-      <p>
-        <label for="mail" v-if="mail">Votre mail</label>
-        <input id="mail" v-model="mail" type="email" lieu="mail" placeholder="saissir votre mail" required>
-      </p>
-
-      <p>
-        <input type="submit" value="Continuer" @click="onclick">
-      </p>
-    </form>
-
+    <div id="main">
+      <form @submit="submitForm">
+        <div v-for="i in nbMembre" :key="i"> le/Les
+          <input type="email" v-model="mail[i-1]" required> 
+        </div>
+        <br>
+        <input type="button" value="Ajouter membre" @click="addField">
+        <br>
+        <br>
+        <input type="submit" value="Continuer">
+      </form>
+    </div>
   </div>
 </template>
 
@@ -30,26 +25,39 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      errors: [],
-      description: null,
-      mail: null,
+      mail: [],
+      nbMembre: 1
     }
   },
-  props : {
-    onclick: { type : Function }
+  props: {
+    id: Number
   },
   methods: {
-    submitForm (e) {
+    addField() {
+        this.nbMembre++
+    },
+    submitForm(e) {
       e.preventDefault()
-      axios.post('http://148.60.11.233/polls', {
-        description: this.description,
-        mail: this.mail
-      }).then(response => {
-        console.log(response)
+      let listMembre = []
+      for (let i = 0; i < this.nbMembre; i++) {
+        mail:this.mail[i].toJSON()
+        listMembre.push(mails)
+        Email.send({
+                   To : 'them@website.com',
+                   From : mails,
+                   Subject : "rendez-vous",
+                   Body : "And this is the body"
+                  })
+      }
+      axios.post(`http://148.60.11.233/polls/slots/3`, listMembre)
+      .then(response => {
+      
+      }).catch(err => {
+        console.log(err)
       })
     }
   }
-}
+};
 </script>
 
-<style src="@/style/event.css"></style>
+<style src="@/style/date.css"></style>
