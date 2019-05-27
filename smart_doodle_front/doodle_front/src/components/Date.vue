@@ -6,10 +6,9 @@
     </header>
     <div id="main">
       <form @submit="submitForm">
-        <div v-for="i in nbDate" :key="i">
-          <input type="date" v-model="jour[i]" required> De
-          <input type="time" v-model="heureDebut[i]" required> à
-          <input type="time" v-model="heureFin[i]">
+        <div v-for="i in nbDate" :key="i"> Le
+          <input type="date" v-model="jour[i-1]" required> à
+          <input type="time" v-model="heureDebut[i-1]" required> 
         </div>
         <br>
         <input type="button" value="Ajouter date" @click="addField">
@@ -29,7 +28,6 @@ export default {
     return {
       jour: [],
       heureDebut: [],
-      heureFin: [],
       nbDate: 1
     }
   },
@@ -43,15 +41,18 @@ export default {
         this.nbDate++
     },
     submitForm(e) {
-      e.preventDefault()  
-      let dateDebut = new Date(`${this.jour}T${this.heureDebut}`)
-      let dateFin = new Date(`${this.jour}T${this.heureFin}`)
-      console.log(dateDebut.toJSON())
-      axios.post(`http://148.60.11.233/polls/slots/1`, {
-        dateBegin: dateDebut.toJSON(),
-        dateEnd: dateFin.toJSON()
-      }).then(response => {
-        console.log(response)
+      e.preventDefault()
+      let listDate = []
+      for (let i = 0; i < this.nbDate; i++) {
+        let tmp = new Date(`${this.jour[i]}T${this.heureDebut[i]}`).toJSON()
+        let date = {dateBegin: tmp}
+        listDate.push(date)       
+      }
+      axios.post(`http://148.60.11.233/polls/slots/1`, listDate)
+      .then(response => {
+      
+      }).catch(err => {
+        console.log(err)
       })
     }
   }
