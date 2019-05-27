@@ -31,6 +31,12 @@ public class Rest {
     }
 
     @GET
+    @Path("{id}")
+    public Poll getPoll(@PathParam("id") Long id) {
+        return Poll.findById(id);
+    }
+
+    @GET
     @Path("g")
     public List<Guest> listg() {
         return Guest.listAll();
