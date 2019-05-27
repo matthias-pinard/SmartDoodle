@@ -36,20 +36,6 @@ public class Rest {
 	   	return Poll.findById(id);
 	}
     
-	@GET
-    @Path("{id}/g")
-    public List<Guest> listg(@PathParam("id") Long id) {
-		Poll poll = Poll.findById(id);
-        return poll.guests;
-    }
-    
-	@GET
-    @Path("{id}/s")
-    public List<Slot> lists(@PathParam("id") Long id) {
-		Poll poll = Poll.findById(id);
-        return poll.slots;
-    }
-    
     @POST
     @Transactional
     public Poll createPoll(Poll poll) {
