@@ -14,7 +14,7 @@
 
       <p>
         <label for="mail" v-if="mail">Adresse Email</label>
-        <input id="mail" v-model="mail" type="text" name="mail" placeholder="Votre adresse email" required>
+        <input id="mail" v-model="mail" type="text" name="mail" placeholder="Votre adresse email (facultatif)">
       </p>
 
       <p>
