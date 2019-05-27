@@ -39,7 +39,7 @@ public class Rest {
         Pad pad = new Pad(PAD_URL, PAD_API_KEY);
         poll.pad_link = pad.getLink();
         poll.persist();
-
+        pad.setHeader(poll.title);
         return poll;
     }
 
