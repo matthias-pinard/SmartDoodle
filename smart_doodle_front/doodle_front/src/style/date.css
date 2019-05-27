@@ -1,0 +1,14 @@
+h1, h2, #main {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    font-size: 50px;
+    margin-top: 60px;
+    color: darkcyan;
+}
+
+h2 {
+    font-size: 30px;
+  }
