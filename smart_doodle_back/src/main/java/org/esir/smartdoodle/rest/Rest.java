@@ -6,6 +6,7 @@ import org.esir.smartdoodle.entities.Poll;
 import org.esir.smartdoodle.entities.Slot;
 import org.esir.smartdoodle.entities.UserAccount;
 import org.esir.smartdoodle.jsonobject.Disponibility;
+import org.esir.smartdoodle.pad.Pad;
 import org.jboss.logging.annotations.Pos;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -22,6 +23,8 @@ import java.util.List;
 @ApplicationScoped
 public class Rest {
 
+    private final String PAD_API_KEY = "473205ce80eba9fefc02de7401d64d71d4fda6db8fd1e066d71da3f4cc2ce723";
+    private final String PAD_URL = "http://148.60.11.233:3000";
     @GET
     public List<Poll> list() {
         return Poll.listAll();
@@ -36,7 +39,10 @@ public class Rest {
     @POST
     @Transactional
     public Poll createPoll(Poll poll) {
+        Pad pad = new Pad(PAD_URL, PAD_API_KEY);
+        poll.pad_link = pad.getLink();
         poll.persist();
+
         return poll;
     }
 
@@ -61,6 +67,9 @@ public class Rest {
         poll.addGuest(guest);
         guest.persist();
         poll.persist();
+
+        Pad pad = new Pad(Pad.getIdFromLink(poll.pad_link), PAD_API_KEY);
+        pad.addUser(guest.name);
     }
 
     @PATCH
