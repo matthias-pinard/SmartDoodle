@@ -1,4 +1,3 @@
-
 package org.esir.smartdoodle.rest;
 
 import org.esir.smartdoodle.entities.Guest;

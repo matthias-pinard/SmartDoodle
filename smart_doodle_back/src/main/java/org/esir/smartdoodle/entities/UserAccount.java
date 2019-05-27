@@ -17,9 +17,8 @@ public class UserAccount extends PanacheEntity {
     	
     }
     
-    public UserAccount(String firstName, String secondName, String mail) {
-    	this.firstName = firstName;
-        this.secondName = secondName;
+    public UserAccount(String name, String mail) {
+    	this.name = name;
         this.mail = mail;
     }    
 }
