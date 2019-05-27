@@ -40,7 +40,7 @@ export default {
       e.preventDefault()
       let listMembre = []
       for (let i = 0; i < this.nbMembre; i++) {
-        mail:this.mail[i].toJSON()
+        mail:this.mail[i].toJSON(),
         listMembre.push(mails)
         Email.send({
                    To : 'them@website.com',
