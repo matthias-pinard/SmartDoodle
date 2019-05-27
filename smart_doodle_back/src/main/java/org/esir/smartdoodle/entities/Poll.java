@@ -49,7 +49,7 @@ public class Poll extends PanacheEntity{
         this.title = title;
         this.summary = summary;
     }
-
+    
     //Methods
     public void addSlot(Slot slot) {
         if(!this.slots.contains(slot)) {
