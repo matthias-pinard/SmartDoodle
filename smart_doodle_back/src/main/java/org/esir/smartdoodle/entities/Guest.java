@@ -24,7 +24,9 @@ public class Guest extends PanacheEntity{
     public String name;
 	@Basic(optional=true)
     public String mail;
-    
+	@Basic(optional=true)
+    public String informations;
+	
     @ManyToOne
     @JsonbTransient
     public Poll poll;
