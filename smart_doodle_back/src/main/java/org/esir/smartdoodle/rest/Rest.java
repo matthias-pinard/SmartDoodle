@@ -75,7 +75,7 @@ public class Rest {
 
     @POST
     @Transactional
-    @Path("guests")
+    @Path("{id}/guests")
     public void addGuest(@PathParam("id") Long id, Guest guest) {
         Poll poll = Poll.findById(id);
         poll.addGuest(guest);
