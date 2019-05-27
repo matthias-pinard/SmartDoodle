@@ -13,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 
 
 import java.util.List;
+import java.util.UUID;
 @Path("/polls")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -28,7 +29,7 @@ public class Rest {
     
 	@GET
 	@Path("{id}")
-	public Poll getPollbyID(@PathParam("id") Long id) {
+	public Poll getPollbyID(@PathParam("id") UUID id) {
 	   	return Poll.findById(id);
 	}
     
@@ -45,7 +46,7 @@ public class Rest {
     @POST
     @Transactional
     @Path("{id}/slots")
-    public void addSlots(@PathParam("id") Long id, List<Slot> slots) {
+    public void addSlots(@PathParam("id") UUID id, List<Slot> slots) {
         System.out.println("in");
         Poll poll = Poll.findById(id);
         for(Slot slot: slots) {
@@ -58,7 +59,7 @@ public class Rest {
     @POST
     @Transactional
     @Path("{id}/guests")
-    public void addGuest(@PathParam("id") Long id, Guest guest) {
+    public void addGuest(@PathParam("id") UUID id, Guest guest) {
         Poll poll = Poll.findById(id);
         poll.addGuest(guest);
         guest.persist();
@@ -71,7 +72,7 @@ public class Rest {
     @PATCH
     @Transactional
     @Path("{id}")
-    public void updatePoll(@PathParam("id") Long id, Poll newPoll) {
+    public void updatePoll(@PathParam("id") UUID id, Poll newPoll) {
     	Poll prevPoll = Poll.findById(id);
     	prevPoll.title = newPoll.title;
     	prevPoll.summary = newPoll.summary;
