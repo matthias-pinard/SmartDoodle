@@ -15,13 +15,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.GenericGenerator;
 
 
 @Entity
-public class Poll extends PanacheEntity{
+public class Poll extends PanacheEntityBase {
 
 	@Id
 	@GeneratedValue(generator = "UUID")
