@@ -38,7 +38,7 @@ public class Poll extends PanacheEntity{
     
     @Basic(optional=true)
     public String pad_link;
-    
+
     @Basic(optional=true)
     public String slack_link;
     //Constructors
