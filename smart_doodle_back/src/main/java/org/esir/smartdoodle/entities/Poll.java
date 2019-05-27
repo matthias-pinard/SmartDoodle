@@ -2,6 +2,7 @@ package org.esir.smartdoodle.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by 16002492 on 24/04/19.
@@ -17,6 +18,7 @@ import org.hibernate.annotations.CascadeType;
 
 @Entity
 public class Poll extends PanacheEntity{
+	private static final String CHAT_PLATFORM_LINK = "https://tlk.io/";
 
     @Basic(optional=false)
     public String title;
@@ -40,7 +42,7 @@ public class Poll extends PanacheEntity{
     public String pad_link;
     
     @Basic(optional=true)
-    public String slack_link;
+    public String chat_link = CHAT_PLATFORM_LINK+UUID.randomUUID().toString().substring(0, 30);
     //Constructors
     public Poll() {
     }
@@ -63,4 +65,11 @@ public class Poll extends PanacheEntity{
         guest.poll = this;
     }
     //Queries
+
+	@Override
+	public void persist() {
+		super.persist();
+	}
+    
+    
 }
