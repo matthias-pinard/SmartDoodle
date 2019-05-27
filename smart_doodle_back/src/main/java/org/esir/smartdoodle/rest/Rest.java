@@ -47,7 +47,6 @@ public class Rest {
     @Transactional
     @Path("{id}/slots")
     public void addSlots(@PathParam("id") UUID id, List<Slot> slots) {
-        System.out.println("in");
         Poll poll = Poll.findById(id);
         for(Slot slot: slots) {
             poll.addSlot(slot);
@@ -86,7 +85,6 @@ public class Rest {
     public void changeDisponibility(Disponibility disponibility) {
         Guest guest = Guest.findById(disponibility.guestId);
         Slot slot = Slot.findById(disponibility.slotId);
-        System.out.println(disponibility.available);
         if(disponibility.available) {
             guest.addSlot(slot);
         } else {
@@ -94,14 +92,15 @@ public class Rest {
         }
         slot.persist();
         guest.persist();
-        System.out.println("" + guest.slots);
     }
 
-//
-//    @DELETE
-//    @Path("/{id}")
-//    public void delete(@PathParam("id") Long id) {
-//        Poll.d
-//    }
+   @DELETE
+   @Path("/{id}")
+   public void delete(@PathParam("id") UUID id){
+	   Poll poll = Poll.findById(id);
+	   if(poll.isPersistent()) {
+		   poll.delete();
+	   }
+   }
 
 }
