@@ -24,6 +24,9 @@ public class Poll extends PanacheEntity{
     @Basic(optional=false)
     public String summary;
 
+    @Basic(optional=true)
+    public String place;
+    
     @Basic()
     @OneToMany(mappedBy = "poll")
     @Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
