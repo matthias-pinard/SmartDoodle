@@ -8,7 +8,10 @@ La base de données est une base [postgres](https://hub.docker.com/_/postgres) q
 
 ##### Modèle de donnée :
 ![SmartDoodle data model](https://github.com/Nassafy/SmartDoodle/blob/master/diag.png?raw=true)
-Un sondage de réunion possède une liste de dates possibles ainsi qu'une lisete d'invités. Chaque invité peut choisir les dates qui lui conviennent. Un invité peut ne pas avoir de compte ou bien etre lié à un compte utilisateur.
+
+ - Un sondage de réunion possède une liste de dates possibles ainsi qu'une liste d'invités. 
+ - Chaque invité peut choisir les dates qui lui conviennent. 
+ - Un invité peut ne pas avoir de compte ou bien etre lié à un compte utilisateur.
 ### Front
 L'interface utilisateur a été construite avec [Vue.js](https://vuejs.org/).
 
