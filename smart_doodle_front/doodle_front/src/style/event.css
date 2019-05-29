@@ -1,4 +1,4 @@
-h1, h2, p, input[type=submit], .button1{
+h1, h2, h3, p, input[type=submit], .button1{
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   text-align: center;
 }
@@ -23,3 +23,6 @@ input[type=submit]{
   padding: 10px 16px;
 }
 
+a {
+  text-align: center
+}
