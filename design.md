@@ -15,6 +15,7 @@ La base de données est une base [postgres](https://hub.docker.com/_/postgres) q
 ### Front
 L'interface utilisateur a été construite avec [Vue.js](https://vuejs.org/).
 ### Dockerisation
+Nous avons mis en place un docker-compose pour le déploiement de lap
 3 conteneurs :
  - [postgres](https://hub.docker.com/_/postgres), un conteneur simple permettant d'avoir un base de donnée POSTGRES
  - smartdoodle, notre conteneur docker de l'API rest contruit avec Quarkus et uploadé sur dockerhub
