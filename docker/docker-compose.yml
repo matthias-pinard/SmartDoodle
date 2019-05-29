@@ -37,5 +37,4 @@ smartdoodle:
     links:
       - db
       - pad
-    working_dir: "/home/docker"
 
