@@ -27,10 +27,10 @@ import org.esir.smartdoodle.pad.Pad;
 @Consumes(MediaType.APPLICATION_JSON)
 @ApplicationScoped
 public class Rest {
-	private final String DEFAULT_URL = "localhost:3500";
+	private final String DEFAULT_URL = "148.60.11.233:3500";
 	private final String DEFAULT_API_KEY = "473205ce80eba9fefc02de7401d64d71d4fda6db8fd1e066d71da3f4cc2ce723";
     private final String PAD_API_KEY = System.getenv("PAD_API_KEY")!=null?System.getenv("PAD_API_KEY"):DEFAULT_API_KEY;
-    private final String PAD_URL = "http://" +System.getenv("PAD_URL")!=null?System.getenv("PAD_URL"):DEFAULT_URL;
+    private final String PAD_URL = System.getenv("PAD_URL")!=null?System.getenv("PAD_URL"):DEFAULT_URL;
     
     private final String INVALID_ID = "Invalid id provided";
     @GET
@@ -99,20 +99,22 @@ public class Rest {
     
     @PATCH
     @Transactional
-    @Path("{id}/disponibility/")
-    public void changeDisponibility(Disponibility disponibility) {
-        Guest guest = Guest.findById(disponibility.guestId);
+    @Path("{id}/disponibility/{userId}")
+    public void changeDisponibility(List<Disponibility> lDisponibility, @PathParam("userId") Long guestId) {
+        Guest guest = Guest.findById(guestId);
         if (guest == null)
 			throw new WebApplicationException(INVALID_ID, Response.Status.NOT_FOUND);
-        Slot slot = Slot.findById(disponibility.slotId);
-        if (slot == null)
-			throw new WebApplicationException(INVALID_ID, Response.Status.NOT_FOUND);
-        if(disponibility.available) {
-            guest.addSlot(slot);
-        } else {
-            guest.removeSlot(slot);
+        for(Disponibility disponibility: lDisponibility) {
+            Slot slot = Slot.findById(disponibility.slotId);
+            if (slot == null)
+                throw new WebApplicationException(INVALID_ID, Response.Status.NOT_FOUND);
+            if(disponibility.available) {
+                guest.addSlot(slot);
+            } else {
+                guest.removeSlot(slot);
+            }
+            slot.persist();
         }
-        slot.persist();
         guest.persist();
     }
 
