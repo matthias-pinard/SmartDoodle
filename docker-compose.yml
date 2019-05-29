@@ -1,0 +1,39 @@
+db:
+    image: postgres:10.5
+    container_name: postgres
+    ports:
+      - "3000:5432"
+    environment:
+      - "POSTGRES_USER=sarah"
+      - "POSTGRES_PASSWORD=connor"
+      - "POSTGRES_DB=mydatabase"
+    ulimits:
+       memlock:
+           soft: -1
+           hard: -1
+           
+pad:
+    image: Nassafy/etherpad:latest
+    container_name: etherpad
+    ports:
+      - "3500:3500"
+    environment:
+      - "PAD_API_KEY=473205ce80eba9fefc02de7401d64d71d4fda6db8fd1e066d71da3f4cc2ce723"
+
+smartdoodle:
+    image: Nassafy/smartdoodle:latest
+    container_name: smartdoodle
+    environment:
+      - "POSTGRES_USER=sarah"
+      - "POSTGRES_PASSWORD=connor"
+      - "POSTGRES_DB=mydatabase"
+      - "DB_URL=148.60.11.233:3000"
+      - "PAD_API_KEY=473205ce80eba9fefc02de7401d64d71d4fda6db8fd1e066d71da3f4cc2ce723"
+      - "PAD_URL=148.60.11.233:3500"
+    ports:
+      - "80:80"
+    links:
+      - db
+      - pad
+    working_dir: "/home/docker"
+
