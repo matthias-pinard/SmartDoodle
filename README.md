@@ -3,7 +3,7 @@ Inspiré de [doodle](https://doodle.com/fr/). Une application de sondage pour or
  - Créez une réunion et partagez le lien au invités
  - Fixez plusieurs créneaux si besoin
  - Laissez les invités répondre au sondage
- - Fixez le créneau le plus adapté. Vous savez qui sera présent/absent. Un pad est créer et pré-rempli, ainsi qu'un chat [tlk.io](https://tlk.io/)
+ - Fixez le créneau le plus adapté. Vous savez qui sera présent/absent. Un pad est créé et pré-rempli, ainsi qu'un chat [tlk.io](https://tlk.io/)
  - Chaque utilisateur peut renseigner des informations supplémentaires le concernant
 
 Le but de ce projet est de mettre en place une application rest avec les outils avancés du développement industriel.
