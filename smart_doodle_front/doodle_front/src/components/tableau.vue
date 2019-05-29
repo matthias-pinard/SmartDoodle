@@ -1,53 +1,108 @@
 <template>
-       <table>
+  <div>
+    <table>
       <thead>
         <tr>
-        <template v-for="date of dates">
-           <td>{{date.jour}}+de+{{date.debut}}+à+{{date.fin}}</td>
-        </template>
-          </tr>
+          <td></td>
+          <template>
+            <td v-for="(date, index) in event.slots" :key="index">
+              <FormatDate :dateString="date"></FormatDate>
+            </td>
+          </template>
+        </tr>
       </thead>
       <tbody>
-        <tr v-for="p of participant">
-        <template v-for="date of dates">
-        <td>
-        <input type="checkbox" id="checkbox" v-model="checked" >
-        </td>
-        </template>
-        <td >{{ p.nom }}</td>
-            
+        <tr v-for="p in event.guests" :key="p">
+          <td>
+            <input type="button" value="Modifier" @click="edit(p)">
+            {{ p.name }}
+          </td>
+          <template>
+            {{disponibility}}
+            <td v-for="(date, index) in event.slots" :key="index">
+              <input
+                type="checkbox"
+                id="checkbox"
+                v-model="checked"
+                :disabled="isDisabled(p.name)"
+                :checked="disponibility[p.name][date.id]"
+              >
+            </td>
+          </template>
         </tr>
       </tbody>
     </table>
+    <p>
+      <input class="button1" type="button" value="Envoyer" @click="envoyer">
+    </p>
+  </div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
+import FormatDate from "./FormatDate";
+
 export default {
   data() {
     return {
-      event: null,
-      dates: [
-            {jour: "20/10/2019", debut: "9:00", fin : " 10:00"},
-             {jour: "20/10/2019", debut: "11:00", fin : " 14:00"},
-             {jour: "20/10/2019", debut: "20:00", fin : " 22:00"}          
-          ],
-          participant:[ {nom: "Durand"},            
-            {nom: "Martin"},
-            {nom: "Torlet"} ]
+      currentUser: null,
+      disponibility: {}
     };
   },
+  props: {
+    event
+  },
+
+  methods: {
+    isDisabled(nom) {
+      if (this.currentUser !== null) {
+        return nom !== this.currentUser.name;
+      }
+      return true;
+    },
+    edit(nom) {
+      this.currentUser = nom;
+    },
+    envoyer: function() {
+      let dispo = [];
+      for (let i = 0; i < this.event.slots.length; i++) {
+        let date = this.event.slots[i];
+        dispo.push({
+          slotId: date,
+          available: this.disponibility[this.currentUser.name][date.id]
+        });
+      }
+      axios.patch(
+        "http://148.60.11.233/polls/" +
+          this.$route.params.id +
+          "/disponibility/" +
+          this.currentUser.id,
+        {
+          dispo
+        }
+      );
+    }
+  },
+
   mounted() {
-    axios
-      .get("http://148.60.11.233/polls/" + this.$route.params.id)
-      .then(response => {
-        this.event = response.data;
-      });
+    for (let i = 0; i < this.event.guests.length; i++) {
+      let guest = this.event.guests[i];
+      for (let j = 0; j < this.event.slots.length; j++) {
+        let slot = this.event.slots[i];
+        if (this.disponibility[guest.name] === undefined) {
+          this.disponibility[guest.name] = [];
+        }
+        this.disponibility[guest.name][slot.id] = guest.slots.includes(slot);
+      }
+    }
+    console.log(this.disponibility);
+  },
+
+  components: {
+    FormatDate
   }
 };
-
-
 </script>
 
-<style src="@/style/event.css">
+<style src="@/style/tableau.css">
 </style>

@@ -2,7 +2,7 @@
   <div class="event">
     <header class="header">
       <h1>Doodle++</h1>
-      <h2>Créez votre événement</h2>
+      <h2>Créez votre événement !</h2>
     </header>
 
     <form @submit="submitForm">
@@ -23,8 +23,7 @@
           v-model="summary"
           type="text"
           name="summary"
-          placeholder="Description"
-          required
+          placeholder="Description (facultatif)"
         >
       </p>
 

@@ -5,7 +5,7 @@ h1, h2, h3, p, input[type=submit], .button1{
 
 h1 {
   font-size: 50px;
-  margin-top: 60px;
+  margin-top: 20px;
   color: darkcyan;
 }
 
@@ -25,4 +25,18 @@ input[type=submit]{
 
 a {
   text-align: center
+}
+
+table
+{
+margin: auto;
+}
+td
+{
+text-align :center;
+}
+
+.contour{
+  border: 2px solid;
+  padding: 3px
 }
