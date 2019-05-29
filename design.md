@@ -14,4 +14,9 @@ La base de données est une base [postgres](https://hub.docker.com/_/postgres) q
  - Un invité peut ne pas avoir de compte ou bien etre lié à un compte utilisateur.
 ### Front
 L'interface utilisateur a été construite avec [Vue.js](https://vuejs.org/).
+### Dockerisation
+3 conteneurs :
+ - [postgres](https://hub.docker.com/_/postgres), un conteneur simple permettant d'avoir un base de donnée POSTGRES
+ - smartdoodle, notre conteneur docker de l'API rest contruit avec Quarkus et uploadé sur dockerhub
+ - etherpad, un conteneur docker récupérer dans ce [repo](https://github.com/ether/etherpad-lite/tree/develop/docker) que nous avons modifier pour nos besoins, puis uploadé sur dockerhub
 
