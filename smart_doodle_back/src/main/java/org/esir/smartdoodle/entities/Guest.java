@@ -21,12 +21,13 @@ import java.util.List;
 @Entity
 public class Guest extends PanacheEntity{
 	@Basic(optional=false)
-	public String firstName;
-	@Basic(optional=false)
-    public String secondName;
-	@Basic(optional=false)
+    public String name;
+	@Basic(optional=true)
     public String mail;
-    
+	@Basic(optional=true)
+    public String information;
+//	@Basic(optional=true)
+//    public UserAccount user;
     @ManyToOne
     @JsonbTransient
     public Poll poll;
@@ -36,9 +37,8 @@ public class Guest extends PanacheEntity{
     public List<Slot> slots = new ArrayList<>();
 
     public Guest() {}
-    public Guest(String firstName, String secondName, String mail) {
-        this.firstName = firstName;
-        this.secondName = secondName;
+    public Guest(String name, String mail) {
+        this.name = name;
         this.mail = mail;
     }
 
