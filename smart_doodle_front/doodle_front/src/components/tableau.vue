@@ -1,14 +1,19 @@
 <template>
        <table>
-      <thead repeat.for ="date of dates">
+      <thead>
         <tr>
+        <template v-for="date of dates">
            <td>{{date.jour}}+de+{{date.debut}}+à+{{date.fin}}</td>
-
+        </template>
           </tr>
       </thead>
       <tbody repeat.for ="p of participant">
         <tr>
-        <td repeat.for ="date of dates"><input type="checkbox" id="checkbox" v-model="checked" ></td>
+        <template v-for="date of dates">
+        <td>
+        <input type="checkbox" id="checkbox" v-model="checked" >
+        </td>
+        </template>
         <td >{{ p.nom }}</td>
             
         </tr>
