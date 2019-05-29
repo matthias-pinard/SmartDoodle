@@ -42,6 +42,8 @@ public class Rest {
 	@Path("{id}")
 	public Poll getPollbyID(@PathParam("id") UUID id) {
 		Poll poll = Poll.findById(id);
+		if (poll == null)
+			throw new WebApplicationException(INVALID_ID, Response.Status.NOT_FOUND);
 	   	return poll;
 	}
     
