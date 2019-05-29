@@ -8,12 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import org.hibernate.annotations.GenericGenerator;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 @Entity
-public class UserAccount extends PanacheEntity {
+public class UserAccount extends PanacheEntityBase {
 
 	@Id
 	@GeneratedValue(generator = "UUID")
