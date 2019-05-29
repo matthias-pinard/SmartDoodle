@@ -1,26 +1,43 @@
 package org.esir.smartdoodle.entities;
 
+import java.util.UUID;
+
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import org.hibernate.annotations.GenericGenerator;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 @Entity
-public class UserAccount extends PanacheEntity {
+public class UserAccount extends PanacheEntityBase {
 
-    public String firstName;
+	@Id
+	@GeneratedValue(generator = "UUID")
+	@GenericGenerator(
+		name = "UUID",
+		strategy = "org.hibernate.id.UUIDGenerator"
+	)
+	@Column(name = "id", updatable = false, nullable = false)
+	private UUID id;
+	
+	@Basic(optional = true)
+    public String name;
     
-    public String secondName;
     @Column(unique=true)
+    @Basic(optional = false)
     public String mail;
     
     public UserAccount() {
     	
     }
     
-    public UserAccount(String firstName, String secondName, String mail) {
-    	this.firstName = firstName;
-        this.secondName = secondName;
+    public UserAccount(String name, String mail) {
+    	this.name = name;
         this.mail = mail;
     }    
 }
