@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.GenericGenerator;
@@ -22,7 +23,7 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 
 @Entity
-public class Poll extends PanacheEntity{
+public class Poll extends PanacheEntityBase {
 	private static final String CHAT_PLATFORM_LINK = "https://tlk.io/";
 
 	@Id

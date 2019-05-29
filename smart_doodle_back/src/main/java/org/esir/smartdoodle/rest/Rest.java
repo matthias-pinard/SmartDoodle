@@ -100,7 +100,7 @@ public class Rest {
     
     @PATCH
     @Transactional
-    @Path("{id}/disponibility/{disponibilityID}")
+    @Path("{id}/disponibility/")
     public void changeDisponibility(Disponibility disponibility) {
         Guest guest = Guest.findById(disponibility.guestId);
         if (guest == null)
