@@ -7,8 +7,8 @@
         </template>
           </tr>
       </thead>
-      <tbody repeat.for ="p of participant">
-        <tr>
+      <tbody>
+        <tr v-for="p of participant">
         <template v-for="date of dates">
         <td>
         <input type="checkbox" id="checkbox" v-model="checked" >
