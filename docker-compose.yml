@@ -13,7 +13,7 @@ db:
            hard: -1
            
 pad:
-    image: Nassafy/etherpad:latest
+    image: nassafy/etherpad:latest
     container_name: etherpad
     ports:
       - "3500:3500"
@@ -21,7 +21,7 @@ pad:
       - "PAD_API_KEY=473205ce80eba9fefc02de7401d64d71d4fda6db8fd1e066d71da3f4cc2ce723"
 
 smartdoodle:
-    image: Nassafy/smartdoodle:latest
+    image: nassafy/smartdoodle:latest
     container_name: smartdoodle
     environment:
       - "POSTGRES_USER=sarah"
