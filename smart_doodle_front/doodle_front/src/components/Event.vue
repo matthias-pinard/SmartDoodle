@@ -23,7 +23,8 @@
           v-model="summary"
           type="text"
           name="summary"
-          placeholder="Description (facultatif)"
+          placeholder="Description"
+          required
         >
       </p>
 

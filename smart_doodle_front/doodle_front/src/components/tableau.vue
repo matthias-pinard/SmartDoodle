@@ -18,14 +18,12 @@
             {{ p.name }}
           </td>
           <template>
-            {{disponibility}}
             <td v-for="(date, index) in event.slots" :key="index">
               <input
                 type="checkbox"
                 id="checkbox"
-                v-model="checked"
                 :disabled="isDisabled(p.name)"
-                :checked="disponibility[p.name][date.id]"
+                :checked="isChecked(p.name, date.id)"
               >
             </td>
           </template>
@@ -60,6 +58,11 @@ export default {
       }
       return true;
     },
+
+    isChecked(name, date) {
+      return this.disponibility[name][date];
+    },
+
     edit(nom) {
       this.currentUser = nom;
     },
@@ -68,19 +71,28 @@ export default {
       for (let i = 0; i < this.event.slots.length; i++) {
         let date = this.event.slots[i];
         dispo.push({
-          slotId: date,
+          slotId: date.id,
           available: this.disponibility[this.currentUser.name][date.id]
         });
       }
-      axios.patch(
+      let url =
         "http://148.60.11.233/polls/" +
-          this.$route.params.id +
-          "/disponibility/" +
-          this.currentUser.id,
-        {
+        this.$route.params.id +
+        "/disponibility/" +
+        this.currentUser.id;
+      console.log(url);
+      console.log(dispo);
+      console.log(this.disponibility);
+      axios
+        .patch(url, {
           dispo
-        }
-      );
+        })
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   },
 
@@ -88,13 +100,14 @@ export default {
     for (let i = 0; i < this.event.guests.length; i++) {
       let guest = this.event.guests[i];
       for (let j = 0; j < this.event.slots.length; j++) {
-        let slot = this.event.slots[i];
+        let slot = this.event.slots[j];
         if (this.disponibility[guest.name] === undefined) {
-          this.disponibility[guest.name] = [];
+          this.disponibility[guest.name] = {};
         }
         this.disponibility[guest.name][slot.id] = guest.slots.includes(slot);
       }
     }
+    this.disponibility = Object.assign({}, this.disponibility);
     console.log(this.disponibility);
   },
 

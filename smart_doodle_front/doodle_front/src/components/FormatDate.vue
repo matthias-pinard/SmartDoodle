@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="jour">{{ `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}` }}</div>
+    <div class="jour">{{ `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}` }}</div>
     <div class="heure">{{ `${date.getHours()}:${date.getMinutes()}` }}</div>
   </div>
 </template>
