@@ -40,7 +40,10 @@ public class Pad {
 
     public static void main(String[] args) {
         Pad pad = new Pad("http://148.60.11.233:3500", "473205ce80eba9fefc02de7401d64d71d4fda6db8fd1e066d71da3f4cc2ce723");
+        pad.setHeader("Tessssst");
         pad.addUser("Anne");
+        pad.addUser("Clément");
+
         System.out.println(pad.getLink());
         System.out.println("id: " + Pad.getIdFromLink(pad.getLink()));
     }
@@ -50,13 +53,14 @@ public class Pad {
         final String substring = "Liste des participants:\n";
         int index = str.indexOf(substring);
         if (index == -1) {
-            str += "\n" + substring;
-            index = 0;
+            str += "\n" + substring + user;
         }
-        index += substring.length();
-        String begin = str.substring(0, index);
-        String end = str.substring(index);
-        str = begin + user + "\n" + end;
+        else {
+            index += substring.length();
+            String begin = str.substring(0, index);
+            String end = str.substring(index);
+            str = begin + user + "\n" + end;
+        }
         client.setText(padId, str);
     }
 
@@ -71,7 +75,7 @@ public class Pad {
 
     public void setHeader(String title) {
         String str = client.getText(padId).get("text").toString();
-        str = title + "\n\n" + str;
+        str = title + "\n";
         client.setText(padId, str);
     }
 

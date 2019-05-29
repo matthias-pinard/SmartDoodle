@@ -27,7 +27,7 @@ import org.esir.smartdoodle.pad.Pad;
 @Consumes(MediaType.APPLICATION_JSON)
 @ApplicationScoped
 public class Rest {
-	private final String DEFAULT_URL = "148.60.11.233:3500";
+	private final String DEFAULT_URL = "http://148.60.11.233:3500";
 	private final String DEFAULT_API_KEY = "473205ce80eba9fefc02de7401d64d71d4fda6db8fd1e066d71da3f4cc2ce723";
     private final String PAD_API_KEY = DEFAULT_API_KEY;//System.getenv("PAD_API_KEY")!=null?System.getenv("PAD_API_KEY"):DEFAULT_API_KEY;
     private final String PAD_URL = DEFAULT_URL ;// System.getenv("PAD_URL")!=null?System.getenv("PAD_URL"):DEFAULT_URL;
@@ -48,10 +48,10 @@ public class Rest {
     @POST
     @Transactional
     public Poll createPoll(Poll poll) {
-        //Pad pad = new Pad(PAD_URL, PAD_API_KEY);
-        //poll.pad_link = pad.getLink();
+        Pad pad = new Pad(PAD_URL, PAD_API_KEY);
+        poll.pad_link = pad.getLink();
         poll.persist();
-      //  pad.setHeader(poll.title);
+        pad.setHeader(poll.title);
         return poll;
     }
 
