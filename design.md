@@ -14,6 +14,7 @@ La base de données est une base [postgres](https://hub.docker.com/_/postgres) q
  - Un invité peut ne pas avoir de compte ou bien etre lié à un compte utilisateur.
 ### Front
 L'interface utilisateur a été construite avec [Vue.js](https://vuejs.org/).
+Elle permet d'aller requeter l'API.
 ### Dockerisation
 Nous avons mis en place un docker-compose pour le déploiement de l'application. Il met en place **3 conteneurs/services** :
  - [postgres](https://hub.docker.com/_/postgres), un conteneur simple permettant d'avoir une base de donnée POSTGRES
