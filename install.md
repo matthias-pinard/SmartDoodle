@@ -6,6 +6,6 @@ L'API sera alors disponible sur le port 80, et le pad sur le port 3500.
 
 # Site WEB
 Le site web requête l'API qui doit etre mise en place au préalable
-Pour le déployer sur localhost:8080, récuperez le dossier `smart_doodle_front` et dans le dossier `doodle_front`, exécutez  
-`npm i`
-`npm start`
+Pour le déployer sur localhost:8080, récuperez le dossier `smart_doodle_front` et dans le dossier `doodle_front`, exécutez :  
+`npm i`  
+`npm start`  
