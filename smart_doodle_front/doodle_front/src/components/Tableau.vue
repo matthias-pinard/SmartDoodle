@@ -22,7 +22,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   data() {
     return {
@@ -37,13 +36,6 @@ export default {
             {nom: "Torlet"} ]
     };
   },
-  mounted() {
-    axios
-      .get("http://148.60.11.233/polls/" + this.$route.params.id)
-      .then(response => {
-        this.event = response.data;
-      });
-  }
 };
 
 

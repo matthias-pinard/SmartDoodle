@@ -1,5 +1,5 @@
 <template>
-  <id>
+  <div>
     <h1>{{ this.event.title }}</h1>
     <h2>Evénement créé par {{ this.event.guests[0].name }}</h2>
     <h3>{{ this.event.summary }}</h3>
@@ -9,12 +9,15 @@
       </br>
       <a :href="this.event.pad_link" target="_blank">Accéder au pad</a>
     </p>
-  </id>
+    <Tableau/>
+  </div>
 </template>
 
 <script>
 import axios from "axios";
+import Tableau from './Tableau'
 export default {
+  components: {Tableau},
   data() {
     return {
       event: null,
