@@ -33,7 +33,7 @@ smartdoodle:
       - "PAD_API_KEY=473205ce80eba9fefc02de7401d64d71d4fda6db8fd1e066d71da3f4cc2ce723"
       - "PAD_URL=148.60.11.233:3500"
     ports:
-      - "80:80"
+      - "80:8080"
     links:
       - db
       - pad
