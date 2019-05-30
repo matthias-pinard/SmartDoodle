@@ -29,16 +29,23 @@ export default {
   },
 
   mounted() {
-
     axios
       .get("http://148.60.11.233/polls/" + this.$route.params.id)
       .then(response => {
         this.event = response.data;
+        let slots = this.event.slots.slice();
+
+        slots.sort((a, b) => {
+          if (a.dateBegin > b.dateBegin) {
+            return 1;
+          } else {
+            return -1;
+          }
+        });
+
+        this.event.slots = slots;
+        this.event = Object.assign(this.event);
       });
-    // sort the date chronologically
-    this.event.slots.sort();
-    console.log(JSON.stringify(this.event.slots))
-    this.event = Object.assign(this.event);
   },
 
   components: {
