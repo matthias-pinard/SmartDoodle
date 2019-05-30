@@ -13,6 +13,7 @@
         </div>
         <br>
         <input type="button" value="Ajouter date" @click="addField">
+        <input type="button" value="Supprimer date" @click="deleteField">
         <br>
         <br>
         <input type="submit" value="Continuer">
@@ -40,6 +41,9 @@ export default {
   methods: {
     addField() {
       this.nbDate++;
+    },
+    deleteField () {
+      this.nbDate--;
     },
     submitForm(e) {
       e.preventDefault();

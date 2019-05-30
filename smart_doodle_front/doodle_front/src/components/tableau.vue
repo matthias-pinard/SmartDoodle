@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="p in event.guests" :key="p">
+        <tr v-for="(p, index) in event.guests" :key="index">
           <td>
             <input type="button" value="Modifier" @click="edit(p)">
             {{ p.name }}
@@ -23,7 +23,8 @@
                 type="checkbox"
                 id="checkbox"
                 :disabled="isDisabled(p.name)"
-                :checked="isChecked(p.name, date.id)"
+                :checked="isChecked(p, date)"
+                @change="updateDisponibility($event, p, date)"
               >
             </td>
           </template>
@@ -37,12 +38,9 @@
 </template>
 
 <script>
-<<<<<<< HEAD:smart_doodle_front/doodle_front/src/components/tableau.vue
 import axios from "axios";
 import FormatDate from "./FormatDate";
 
-=======
->>>>>>> master:smart_doodle_front/doodle_front/src/components/Tableau.vue
 export default {
   data() {
     return {
@@ -50,7 +48,6 @@ export default {
       disponibility: {}
     };
   },
-<<<<<<< HEAD:smart_doodle_front/doodle_front/src/components/tableau.vue
   props: {
     event
   },
@@ -63,8 +60,8 @@ export default {
       return true;
     },
 
-    isChecked(name, date) {
-      return this.disponibility[name][date];
+    isChecked(p, date) {
+      return this.disponibility[p.name][date.id];
     },
 
     edit(nom) {
@@ -84,18 +81,16 @@ export default {
         this.$route.params.id +
         "/disponibility/" +
         this.currentUser.id;
-      console.log(url);
-      console.log(JSON.stringify(dispo))
       axios
-        .patch(url, {
-          dispo
-        })
+        .patch(url, dispo)
         .then(function(response) {
-          console.log(response);
         })
         .catch(error => {
           console.log(error);
         });
+    },
+    updateDisponibility: function(event, people, date) {
+      this.disponibility[people.name][date.id] = event.target.checked;
     }
   },
 
@@ -107,22 +102,22 @@ export default {
         if (this.disponibility[guest.name] === undefined) {
           this.disponibility[guest.name] = {};
         }
-        let available =
-          guest.slots.filter(s => {
-            s.id === slot.id;
-          }).length !== 0;
+        let available = false;
+        guest.slots.forEach(s => {
+          if(slot.id == s.id) {
+            available = true
+          }
+        })
+        
         this.disponibility[guest.name][slot.id] = available;
       }
     }
     this.disponibility = Object.assign({}, this.disponibility);
-    console.log(this.disponibility);
   },
 
   components: {
     FormatDate
   }
-=======
->>>>>>> master:smart_doodle_front/doodle_front/src/components/Tableau.vue
 };
 </script>
 

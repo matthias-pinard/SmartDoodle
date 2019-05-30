@@ -2,7 +2,7 @@
   <div class="event">
     <header class="header">
       <h1>Doodle++</h1>
-      <h2>Créez votre événement</h2>
+      <h2>Créez votre événement !</h2>
     </header>
 
     <form @submit="submitForm">
@@ -56,7 +56,8 @@ export default {
       axios
         .post("http://148.60.11.233/polls", {
           title: this.title,
-          summary: this.summary
+          summary: this.summary,
+          place: this.lieu
         })
         .then(response => {
           this.$router.push({ name: "date", params: { id: response.data.id } });
