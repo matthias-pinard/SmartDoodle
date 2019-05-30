@@ -19,7 +19,7 @@
 <script>
 import axios from "axios";
 import tableau from "./tableau";
-import Clipboard from "v-clipboard";
+//import Clipboard from "v-clipboard";
 export default {
   data() {
     return {
