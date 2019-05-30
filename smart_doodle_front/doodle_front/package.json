@@ -12,11 +12,8 @@
     "deploy": "npm run build; push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
-<<<<<<< HEAD
     "v-clipboard": "^2.2.2",
-=======
     "axios": "^0.18.0",
->>>>>>> master
     "vue": "^2.5.2",
     "vue-router": "^3.0.6"
   },
