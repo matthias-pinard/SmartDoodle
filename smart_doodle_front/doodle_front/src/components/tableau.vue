@@ -80,6 +80,8 @@ export default {
         this.$route.params.id +
         "/disponibility/" +
         this.currentUser.id;
+      console.log(url);
+      console.log(JSON.stringify(dispo))
       axios
         .patch(url, {
           dispo
