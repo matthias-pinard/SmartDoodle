@@ -80,9 +80,6 @@ export default {
         this.$route.params.id +
         "/disponibility/" +
         this.currentUser.id;
-      console.log(url);
-      console.log(dispo);
-      console.log(this.disponibility);
       axios
         .patch(url, {
           dispo
@@ -104,7 +101,11 @@ export default {
         if (this.disponibility[guest.name] === undefined) {
           this.disponibility[guest.name] = {};
         }
-        this.disponibility[guest.name][slot.id] = guest.slots.includes(slot);
+        let available =
+          guest.slots.filter(s => {
+            s.id === slot.id;
+          }).length !== 0;
+        this.disponibility[guest.name][slot.id] = available;
       }
     }
     this.disponibility = Object.assign({}, this.disponibility);
