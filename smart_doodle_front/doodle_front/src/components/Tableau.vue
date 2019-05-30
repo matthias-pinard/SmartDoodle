@@ -37,12 +37,9 @@
 </template>
 
 <script>
-<<<<<<< HEAD:smart_doodle_front/doodle_front/src/components/tableau.vue
 import axios from "axios";
 import FormatDate from "./FormatDate";
 
-=======
->>>>>>> master:smart_doodle_front/doodle_front/src/components/Tableau.vue
 export default {
   data() {
     return {
@@ -50,7 +47,6 @@ export default {
       disponibility: {}
     };
   },
-<<<<<<< HEAD:smart_doodle_front/doodle_front/src/components/tableau.vue
   props: {
     event
   },
@@ -84,8 +80,6 @@ export default {
         this.$route.params.id +
         "/disponibility/" +
         this.currentUser.id;
-      console.log(url);
-      console.log(JSON.stringify(dispo))
       axios
         .patch(url, {
           dispo
@@ -121,8 +115,6 @@ export default {
   components: {
     FormatDate
   }
-=======
->>>>>>> master:smart_doodle_front/doodle_front/src/components/Tableau.vue
 };
 </script>
 
