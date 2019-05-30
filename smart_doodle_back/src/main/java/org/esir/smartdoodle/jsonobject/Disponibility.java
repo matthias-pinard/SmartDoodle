@@ -6,8 +6,7 @@ public class Disponibility {
     public Boolean available;
 
     public  Disponibility(){}
-    public Disponibility(Long guest, Long slot, Boolean available) {
-        this.guestId = guest;
+    public Disponibility(Long slot, Boolean available) {
         this.slotId = slot;
         this.available = available;
     }

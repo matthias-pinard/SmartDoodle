@@ -37,9 +37,12 @@
 </template>
 
 <script>
+<<<<<<< HEAD:smart_doodle_front/doodle_front/src/components/tableau.vue
 import axios from "axios";
 import FormatDate from "./FormatDate";
 
+=======
+>>>>>>> master:smart_doodle_front/doodle_front/src/components/Tableau.vue
 export default {
   data() {
     return {
@@ -47,6 +50,7 @@ export default {
       disponibility: {}
     };
   },
+<<<<<<< HEAD:smart_doodle_front/doodle_front/src/components/tableau.vue
   props: {
     event
   },
@@ -117,6 +121,8 @@ export default {
   components: {
     FormatDate
   }
+=======
+>>>>>>> master:smart_doodle_front/doodle_front/src/components/Tableau.vue
 };
 </script>
 
