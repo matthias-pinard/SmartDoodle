@@ -13,7 +13,7 @@ export default {
     };
   },
   props: {
-    dateString: String
+    dateString: {type: Object}
   },
   mounted: function() {
     let tmp = this.dateString.dateBegin.replace('[UTC]', '')
