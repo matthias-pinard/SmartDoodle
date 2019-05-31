@@ -29,6 +29,9 @@
             </td>
           </template>
         </tr>
+        <input class="ajout" type="text" placeholder="Ajouter un participant" v-model="nvParticipant">
+        <input type="button" value="Ajouter" @click="ajouterParticipant" v-if="nvParticipant">
+        
       </tbody>
     </table>
     <p>
@@ -45,7 +48,8 @@ export default {
   data() {
     return {
       currentUser: null,
-      disponibility: {}
+      disponibility: {},
+      nvParticipant: null
     };
   },
   props: {
@@ -62,6 +66,17 @@ export default {
 
     isChecked(p, date) {
       return this.disponibility[p.name][date.id];
+    },
+
+    ajouterParticipant() {
+      console.log(this.nvParticipant)
+      axios.post(
+        "http://148.60.11.233/polls/" + this.$route.params.id + "/guests",
+        {
+          name: this.nvParticipant
+        }
+      );
+      this.event = Object.assign({}, this.event)
     },
 
     edit(nom) {
@@ -83,8 +98,7 @@ export default {
         this.currentUser.id;
       axios
         .patch(url, dispo)
-        .then(function(response) {
-        })
+        .then(function(response) {})
         .catch(error => {
           console.log(error);
         });
@@ -104,11 +118,11 @@ export default {
         }
         let available = false;
         guest.slots.forEach(s => {
-          if(slot.id == s.id) {
-            available = true
+          if (slot.id == s.id) {
+            available = true;
           }
-        })
-        
+        });
+
         this.disponibility[guest.name][slot.id] = available;
       }
     }

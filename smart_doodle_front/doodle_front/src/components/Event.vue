@@ -8,17 +8,33 @@
     <form @submit="submitForm">
       <p>
         <label for="title" v-if="title">Titre</label>
-        <input id="title" v-model="title" type="text" name="title" placeholder="Titre" required>
+        <input
+          class="input"
+          id="title"
+          v-model="title"
+          type="text"
+          name="title"
+          placeholder="Titre"
+          required
+        >
       </p>
 
       <p>
         <label for="lieu" v-if="lieu">Lieu</label>
-        <input id="lieu" v-model="lieu" type="text" name="lieu" placeholder="Lieu (facultatif)">
+        <input
+          class="input"
+          id="lieu"
+          v-model="lieu"
+          type="text"
+          name="lieu"
+          placeholder="Lieu (facultatif)"
+        >
       </p>
 
       <p>
         <label for="summary" v-if="summary">Description</label>
         <input
+          class="input"
           id="summary"
           v-model="summary"
           type="text"

@@ -9,12 +9,12 @@
 
       <p>
         <label for="nom" v-if="nom">Nom</label>
-        <input id="nom" v-model="nom" type="text" name="nom" placeholder="Votre nom" required>
+        <input class="input" id="nom" v-model="nom" type="text" name="nom" placeholder="Votre nom" required>
       </p>
 
       <p>
         <label for="mail" v-if="mail">Adresse Email</label>
-        <input id="mail" v-model="mail" type="text" name="mail" placeholder="Votre adresse email (facultatif)">
+        <input class="input" id="mail" v-model="mail" type="text" name="mail" placeholder="Votre adresse email (facultatif)">
 
       </p>
 
