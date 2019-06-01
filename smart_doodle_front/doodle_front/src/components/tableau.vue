@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(p, index) in event.guests" :key="index">
+        <tr v-for="(p, index) in guests" :key="index">
           <td>
             <input type="button" value="Modifier" @click="edit(p)">
             {{ p.name }}
@@ -29,9 +29,13 @@
             </td>
           </template>
         </tr>
-        <input class="ajout" type="text" placeholder="Ajouter un participant" v-model="nvParticipant">
+        <input
+          class="ajout"
+          type="text"
+          placeholder="Ajouter un participant"
+          v-model="nvParticipant"
+        >
         <input type="button" value="Ajouter" @click="ajouterParticipant" v-if="nvParticipant">
-        
       </tbody>
     </table>
     <p>
@@ -49,7 +53,8 @@ export default {
     return {
       currentUser: null,
       disponibility: {},
-      nvParticipant: null
+      nvParticipant: "",
+      guests: []
     };
   },
   props: {
@@ -69,14 +74,29 @@ export default {
     },
 
     ajouterParticipant() {
-      console.log(this.nvParticipant)
-      axios.post(
-        "http://148.60.11.233/polls/" + this.$route.params.id + "/guests",
-        {
-          name: this.nvParticipant
-        }
-      );
-      this.event = Object.assign({}, this.event)
+      axios
+        .post(
+          "http://148.60.11.233/polls/" + this.$route.params.id + "/guests",
+          {
+            name: this.nvParticipant
+          }
+        )
+        .then(resp => {
+          // this.guests.push(this.nvParticipant);
+          // this.guests = this.guests.slice();
+          // console.log("here");
+          console.log(JSON.stringify(this.guests));
+          this.disponibility[this.nvParticipant] = {};
+          this.event.slots.forEach(s => {
+            this.disponibility[this.nvParticipant][s.id] = false;
+          });
+
+          this.guests.push({ name: this.nvParticipant, slots: [] });
+          this.nvParticipant = "";
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
 
     edit(nom) {
@@ -105,28 +125,32 @@ export default {
     },
     updateDisponibility: function(event, people, date) {
       this.disponibility[people.name][date.id] = event.target.checked;
+    },
+    calculateDisponibility: function() {
+      for (let i = 0; i < this.event.guests.length; i++) {
+        let guest = this.event.guests[i];
+        for (let j = 0; j < this.event.slots.length; j++) {
+          let slot = this.event.slots[j];
+          if (this.disponibility[guest.name] === undefined) {
+            this.disponibility[guest.name] = {};
+          }
+          let available = false;
+          guest.slots.forEach(s => {
+            if (slot.id == s.id) {
+              available = true;
+            }
+          });
+
+          this.disponibility[guest.name][slot.id] = available;
+        }
+      }
+      this.disponibility = Object.assign({}, this.disponibility);
     }
   },
 
   mounted() {
-    for (let i = 0; i < this.event.guests.length; i++) {
-      let guest = this.event.guests[i];
-      for (let j = 0; j < this.event.slots.length; j++) {
-        let slot = this.event.slots[j];
-        if (this.disponibility[guest.name] === undefined) {
-          this.disponibility[guest.name] = {};
-        }
-        let available = false;
-        guest.slots.forEach(s => {
-          if (slot.id == s.id) {
-            available = true;
-          }
-        });
-
-        this.disponibility[guest.name][slot.id] = available;
-      }
-    }
-    this.disponibility = Object.assign({}, this.disponibility);
+    this.guests = this.event.guests.slice();
+    this.calculateDisponibility();
   },
 
   components: {
