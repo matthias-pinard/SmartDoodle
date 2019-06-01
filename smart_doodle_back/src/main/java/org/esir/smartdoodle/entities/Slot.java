@@ -1,11 +1,11 @@
 package org.esir.smartdoodle.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.json.bind.annotation.JsonbTransient;
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
@@ -23,9 +23,9 @@ public class Slot extends PanacheEntity{
     @JsonbTransient
     public Poll poll;
 
-    @ManyToOne
+    @ManyToMany
     @JsonbTransient
-    public Guest guest;
+    public List<Guest> guests = new ArrayList<>();
 
     public Slot(){
 
