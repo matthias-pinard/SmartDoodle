@@ -2,16 +2,16 @@
   <div class="contour">
     <h1>{{ event.title }}</h1>
     <h2>Evénement créé par {{ event.guests[0].name }}</h2>
-    <h3>{{ event.summary }}</h3>
+    <h3>Description : {{ event.summary }}</h3>
+    <h3>Lieu : {{event.place }}</h3>
     <p>
-      Inviter de nouveaux participants :
-      <button v-clipboard="value">Copiez le lien</button>
+      Partagez le lien pour inviter de nouveaux participants. 
       <br>
       <br>
       <a :href="event.pad_link" target="_blank">Accéder au pad</a>
       <a :href="event.chat_link" target="_blank">Accéder au chat</a>
     </p>
-    <p>Disponibilités :</p>
+    <h3>Disponibilités :</h3>
     <tableau :event="event"></tableau>
   </div>
 </template>

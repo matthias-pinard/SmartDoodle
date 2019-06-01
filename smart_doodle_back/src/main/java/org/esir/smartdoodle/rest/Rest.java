@@ -72,7 +72,7 @@ public class Rest {
     @POST
     @Transactional
     @Path("{id}/guests")
-    public void addGuest(@PathParam("id") UUID id, Guest guest) {
+    public Guest addGuest(@PathParam("id") UUID id, Guest guest) {
         Poll poll = Poll.findById(id);
         if (poll == null)
 			throw new WebApplicationException(INVALID_ID, Response.Status.NOT_FOUND);
@@ -80,8 +80,9 @@ public class Rest {
         guest.persist();
         poll.persist();
 
-//        Pad pad = new Pad(PAD_URL, PAD_API_KEY, Pad.getIdFromLink(poll.pad_link));
-//        pad.addUser(guest.name);
+        Pad pad = new Pad(PAD_URL, PAD_API_KEY, Pad.getIdFromLink(poll.pad_link));
+        pad.addUser(guest.name);
+        return  guest;
     }
 
     @PATCH
