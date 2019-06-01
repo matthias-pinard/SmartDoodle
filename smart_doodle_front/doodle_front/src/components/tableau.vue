@@ -91,7 +91,7 @@ export default {
             this.disponibility[this.nvParticipant][s.id] = false;
           });
 
-          this.guests.push({ name: this.nvParticipant, slots: [] });
+          this.guests.push({ name: this.nvParticipant, slots: [], id:resp.data.id });
           this.nvParticipant = "";
         })
         .catch(error => {
