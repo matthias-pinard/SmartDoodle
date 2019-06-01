@@ -50,7 +50,6 @@ public class Guest extends PanacheEntity{
     public void removeSlot(Slot slot) {
         if (slots.contains(slot)) {
             slots.remove(slot);
-            slot.guest = null;
         }
     }
 }
