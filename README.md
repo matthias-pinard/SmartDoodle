@@ -11,3 +11,6 @@ Le but de ce projet est de mettre en place une application rest avec les outils 
 Nous avons choisi Quarkus, un framework très récent qui simplifie un certain nombre d'étapes du développement. Il a également la faculté d'être facilement et rapidement déployable avec docker.
 
 L'API Rest est déployable avec un docker-compose.
+
+# Vidéo démo
+[![](http://img.youtube.com/vi/FVX4Eabw2s0/0.jpg)](http://www.youtube.com/watch?v=FVX4Eabw2s0 "")
